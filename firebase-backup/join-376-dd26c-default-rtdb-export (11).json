@@ -1,0 +1,451 @@
+{
+  "contacts": [
+    {
+      "email": "chloe.rogers@join.com",
+      "id": 1,
+      "name": "Chloe Rogers",
+      "phone": "+4915123456718"
+    },
+    {
+      "email": "daniel.wilson@join.com",
+      "id": 2,
+      "name": "Daniel Wilson",
+      "phone": "+4915123456793"
+    },
+    {
+      "email": "grace.morris@join.com",
+      "id": 3,
+      "name": "Grace Morris",
+      "phone": "+4915123456716"
+    },
+    {
+      "email": "henry.perez@join.com",
+      "id": 4,
+      "name": "Henry Perez",
+      "phone": "+4915123456715"
+    },
+    {
+      "email": "isabella.martins@join.com",
+      "id": 5,
+      "name": "Isabella Martins",
+      "phone": "+4915123456702"
+    },
+    {
+      "email": "james.anderson@join.com",
+      "id": 6,
+      "name": "James Anderson",
+      "phone": "+4915123456797"
+    },
+    {
+      "email": "jwest@gmail.com",
+      "id": 7,
+      "name": "James West",
+      "phone": "+1 900 999 999"
+    },
+    {
+      "email": "moore@gmail.com",
+      "id": 8,
+      "name": "Liam Moore",
+      "phone": "+4915123456795"
+    },
+    {
+      "email": "lucas.lee@join.com",
+      "id": 9,
+      "name": "Lucas Lee",
+      "phone": "+4915123456703"
+    },
+    {
+      "email": "noah.jackson@join.com",
+      "id": 10,
+      "name": "Noah Jackson",
+      "phone": "+4915123456799"
+    },
+    {
+      "email": "rsilva@gmail.com",
+      "id": 11,
+      "name": "Roberto Silva",
+      "phone": "+1 990 999 888"
+    }
+  ],
+  "tasks": [
+    {
+      "assignedTo": [
+        {
+          "color": "#00BEE8",
+          "firstName": "Ava",
+          "lastName": "Thomas"
+        },
+        {
+          "color": "#1FD7C1",
+          "firstName": "Daniel",
+          "lastName": "Wilson"
+        },
+        {
+          "color": "#9327FF",
+          "firstName": "Chloe",
+          "lastName": "Rogers"
+        },
+        {
+          "color": "#FF5EB3",
+          "firstName": "Guest",
+          "lastName": "(You)"
+        }
+      ],
+      "category": "User Story",
+      "description": "Revise the legal notive document according to the new regulations.",
+      "dueDate": "2024-12-12",
+      "id": 1,
+      "list": "done",
+      "prio": "Medium",
+      "subtasks": [
+        {
+          "status": "done",
+          "title": "Research new regulations"
+        },
+        {
+          "status": "not done",
+          "title": "Consult legal team"
+        }
+      ],
+      "title": "Update Legal Notice"
+    },
+    {
+      "assignedTo": [
+        {
+          "color": "#9327FF",
+          "firstName": "Chloe",
+          "lastName": "Rogers"
+        },
+        {
+          "color": "#FF745E",
+          "firstName": "Daniel",
+          "lastName": "Wilson"
+        },
+        {
+          "color": "#FFBB2B",
+          "firstName": "Ava",
+          "lastName": "Thomas"
+        }
+      ],
+      "category": "Technical Task",
+      "description": "Identify and resolve critical bugs reported by QA.",
+      "dueDate": "2024-12-12",
+      "id": 2,
+      "list": "await-feedback",
+      "prio": "Medium",
+      "subtasks": [
+        {
+          "status": "done",
+          "title": "Identify critical bugs"
+        },
+        {
+          "status": "done",
+          "title": "Fix critical bugs"
+        },
+        {
+          "status": "done",
+          "title": "Test fixed bugs"
+        }
+      ],
+      "title": "Fix Bugs in App"
+    },
+    {
+      "assignedTo": [
+        {
+          "color": "#FF4646",
+          "firstName": "Roberto",
+          "lastName": "Silva"
+        },
+        {
+          "color": "#C3FF2B",
+          "firstName": "Liam",
+          "lastName": "Moore"
+        },
+        {
+          "color": "#FFBB2B",
+          "firstName": "James",
+          "lastName": "West"
+        }
+      ],
+      "category": "Technical Task",
+      "description": "Create wireframes for the new website homepage.",
+      "dueDate": "2024-11-21",
+      "id": 3,
+      "list": "to-do",
+      "prio": "Low",
+      "subtasks": [
+        {
+          "status": "done",
+          "title": "Gather feedback"
+        }
+      ],
+      "title": "Design Homepage"
+    },
+    {
+      "assignedTo": [
+        {
+          "color": "#FF745E",
+          "firstName": "Chloe",
+          "lastName": "Rogers"
+        },
+        {
+          "color": "#6E52FF",
+          "firstName": "James",
+          "lastName": "West"
+        },
+        {
+          "color": "#FC71FF",
+          "firstName": "Henry",
+          "lastName": "Perez"
+        }
+      ],
+      "category": "Technical Task",
+      "description": "Create a presentation for the quarterly team meeting.",
+      "dueDate": "2024-11-28",
+      "id": 4,
+      "list": "in-progress",
+      "prio": "Urgent",
+      "subtasks": [
+        {
+          "status": "done",
+          "title": "Gather content from team leads"
+        },
+        {
+          "status": "not done",
+          "title": "Design slides"
+        }
+      ],
+      "title": "Prepare Presentation"
+    },
+    {
+      "assignedTo": [
+        {
+          "color": "#FFBB2B",
+          "firstName": "Roberto",
+          "lastName": "Silva"
+        },
+        {
+          "color": "#FF4646",
+          "firstName": "Noah",
+          "lastName": "Jackson"
+        }
+      ],
+      "category": "Technical Task",
+      "description": "Analyze feedback from the latest client survey.",
+      "dueDate": "2024-12-01",
+      "id": 5,
+      "list": "done",
+      "prio": "Medium",
+      "subtasks": [
+        {
+          "status": "done",
+          "title": "Create action points"
+        },
+        {
+          "status": "done",
+          "title": "Present findings to stakeholders"
+        }
+      ],
+      "title": "Client Feedback Analysis"
+    },
+    {
+      "assignedTo": [
+        {
+          "color": "#FFC701",
+          "firstName": "Chloe",
+          "lastName": "Rogers"
+        },
+        {
+          "color": "#1FD7C1",
+          "firstName": "Ava",
+          "lastName": "Thomas"
+        },
+        {
+          "color": "#0038FF",
+          "firstName": "Daniel",
+          "lastName": "Wilson"
+        },
+        {
+          "color": "#6E52FF",
+          "firstName": "Grace",
+          "lastName": "Morris"
+        }
+      ],
+      "category": "User Story",
+      "description": "Revise the project documentation to reflect recent changes.",
+      "dueDate": "2024-12-01",
+      "id": 6,
+      "list": "in-progress",
+      "prio": "Medium",
+      "subtasks": [
+        {
+          "status": "not done",
+          "title": "Review recent changes"
+        },
+        {
+          "status": "not done",
+          "title": "Update relevant sections"
+        }
+      ],
+      "title": "Update Documentation"
+    }
+  ],
+  "users": {
+    "abeck@gmail,com": {
+      "email": "abeck@gmail.com",
+      "name": "Andreas Beck",
+      "password": "cccc"
+    },
+    "adrian@test-test,test": {
+      "email": "adrian@test-test.test",
+      "name": "Adrian",
+      "password": "test"
+    },
+    "ana1@yahoo,com": {
+      "email": "ana1@yahoo.com",
+      "name": "Ana",
+      "password": "aaa"
+    },
+    "ana@yahoo,com": {
+      "email": "ana@yahoo.com",
+      "name": "Ana",
+      "password": "aaa"
+    },
+    "asdf@asdf,de": {
+      "email": "asdf@asdf.de",
+      "name": "Asdf",
+      "password": "asdf"
+    },
+    "david,flick@gmx,de": {
+      "email": "david.flick@gmx.de",
+      "name": "David Flick",
+      "password": "david123"
+    },
+    "dieter,w1@hotmail,com": {
+      "email": "dieter.w1@hotmail.com",
+      "name": "Dieter Walker",
+      "password": "vvv"
+    },
+    "dieter,w@hotmail,com": {
+      "email": "dieter.w@hotmail.com",
+      "name": "Dieter Walker",
+      "password": "pass123"
+    },
+    "evan@join,com": {
+      "email": "evan@join.com",
+      "name": "Evan Organ",
+      "password": "ev"
+    },
+    "flo1@dev,com": {
+      "email": "flo1@dev.com",
+      "name": "Florian Rehm",
+      "password": "1234"
+    },
+    "flo@dev,com": {
+      "email": "flo@dev.com",
+      "name": "Florian Rehm",
+      "password": "1234567890"
+    },
+    "gjorgiev@outlook,com": {
+      "email": "gjorgiev@outlook.com",
+      "name": "Dino",
+      "password": "gjorgiev"
+    },
+    "guest": {
+      "email": "guest",
+      "name": "Guest",
+      "password": "guest"
+    },
+    "jon,mag,santos@gmail,com": {
+      "email": "jon.mag.santos@gmail.com",
+      "name": "Jonas",
+      "password": "jms"
+    },
+    "jonas@gmail,com": {
+      "email": "jonas@gmail.com",
+      "name": "Jonas",
+      "password": "123"
+    },
+    "jonas@test,de": {
+      "email": "jonas@test.de",
+      "name": "Jonas",
+      "password": "test"
+    },
+    "jonas@test1,de": {
+      "email": "jonas@test1.de",
+      "name": "Jonas",
+      "password": "cc"
+    },
+    "kellym@join,de": {
+      "email": "kellym@join.de",
+      "name": "Kelly Maier",
+      "password": "km"
+    },
+    "maria@maria,com": {
+      "email": "maria@maria.com",
+      "name": "Maria",
+      "password": "123"
+    },
+    "max,mustermann@mail,de": {
+      "email": "max.mustermann@mail.de",
+      "firstName": "Max",
+      "lastName": "Mustermann",
+      "password": "cccc"
+    },
+    "max@mustermann": {
+      "email": "max@mustermann",
+      "name": "MAx Mustermann",
+      "password": "1234"
+    },
+    "max@mustermann1": {
+      "email": "max@mustermann1",
+      "name": "MAx Mustermann",
+      "password": "12345"
+    },
+    "mlockmann1@gmx,de": {
+      "email": "mlockmann1@gmx.de",
+      "name": "Mathias Lockmann",
+      "password": "lockmathias"
+    },
+    "mlockmann@gmx,de": {
+      "email": "mlockmann@gmx.de",
+      "name": "Mathias Lockmann",
+      "password": "lockmathias"
+    },
+    "r@r": {
+      "email": "r@r",
+      "name": "R",
+      "password": "asf"
+    },
+    "sofiam@gmail,com": {
+      "email": "sofiam@gmail.com",
+      "name": "Sofia Müller",
+      "password": "mypassword123"
+    },
+    "test,test,dot@gmail,com": {
+      "email": "test.test.dot@gmail.com",
+      "name": "User Test",
+      "password": "test123"
+    },
+    "test@1234": {
+      "email": "test@1234",
+      "name": "Test",
+      "password": "1234"
+    },
+    "test@test": {
+      "email": "test@test",
+      "name": "Karl M.",
+      "password": "1234"
+    },
+    "test@test,com": {
+      "email": "test@test.com",
+      "name": "Test",
+      "password": "123"
+    },
+    "test@test,de": {
+      "email": "test@test.de",
+      "name": "TEst",
+      "password": "ee"
+    }
+  }
+}
