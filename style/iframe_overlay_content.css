@@ -1,5 +1,4 @@
-⬇️⬇️⬇️IFRAME-CSS⬇️⬇️⬇️ #overlay-mode {
-    
+#overlay-mode {
     position: fixed;
     top: 0;
     left: 0;
@@ -172,11 +171,6 @@
 #overlay-mode #picked-user-avatar {
     display: none !important;
 }
-
-
-
-
-/* ⬇️⬇️⬇️IFRAME-RESPONSIVE⬇️⬇️⬇️ */
 
 @media (max-width: 1200px) {
     #overlay-mode .content-container {

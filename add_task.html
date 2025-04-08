@@ -24,7 +24,7 @@
     <script src="scripts/base_url.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="./scripts/script.js" defer></script>
-
+    <script src="./scripts/date_input.js"></script>
 
 </head>
 
@@ -105,11 +105,18 @@
                                     onblur="validateInput()">
                                 <span class="error-message" id="error-message">Please select a Title</span>
                             </div>
-
                             <p id="description-p" style="margin-bottom: 10px; margin-top: 24px;">Description</p>
                             <div class="textarea">
                                 <input id="description" type="text" placeholder="Enter a Description">
                                 <img src="./assets/icons/description-icon.png" alt="logo">
+                            </div>
+                            <div class="date-input-container">
+                                <p>Attachments</p>
+                                <div class="date-input-field" onclick="openUpload()">
+                                    <p class="upload-placeholder">Upload your Attachments</p>
+                                    <img src="./assets/icons/upload.svg" alt="upload">
+                                    <input id="file-input" type="file">
+                                </div>
                             </div>
                             <div class="dropdown">
                                 <p id="assignedto-p" style="margin-bottom: 10px; margin-top: 24px;">Assigned to</p>
@@ -122,7 +129,7 @@
                                 </div>
                                 <div id="picked-user-avatar" class="picked-user-avatar"></div>
                                 <div id="dropdown-user" class="user-list">
-                                </div>
+                            </div>
                         </section>
                         <div class="separating-line"></div>
                         <section class="content-right">

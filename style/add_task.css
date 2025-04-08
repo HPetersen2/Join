@@ -1,3 +1,5 @@
+@import './../style/style.css';
+
 .overall-container {
     width: 100%;
 }
@@ -28,7 +30,7 @@ select {
 
 .separating-line {
     width: 2px;
-    height: 424px;
+    height: 500px;
     background-color: #D1D1D1;
 }
 
@@ -92,7 +94,6 @@ select {
 .content-right {
     display: flex;
     width: 440px;
-    /* height: 416px; */
     flex-direction: column;
 }
 
@@ -117,7 +118,6 @@ select {
     outline: none;
     border-style: solid;
     border-color: #29ABE2;
-
 }
 
 #dateimg,
@@ -151,9 +151,7 @@ select {
     outline: none;
     border-style: solid;
     border-color: #29ABE2;
-
 }
-
 
 .date-container {
     border: 1px solid #dcdcdc;
@@ -168,16 +166,13 @@ select {
 }
 
 #selectcategory:focus {
-
     border: 2px solid;
     border-color: #29ABE2;
-
 }
 
 #addsubtasks:focus {
     border: 2px solid;
     border-color: #29ABE2;
-
 }
 
 .date-input {
@@ -202,21 +197,13 @@ select {
 }
 
 .textarea {
+    position: relative;
     width: 100%;
     height: 160px;
+    padding: 10px;
     background-color: #FFFFFF;
     border-radius: 12px;
     border-style: none;
-    filter: drop-shadow(0px 0px 4px #D1D1D1);
-}
-
-.textarea {
-    width: 100%;
-    color: #D1D1D1;
-    position: relative;
-    border-radius: 12px;
-    border-style: none;
-    padding: 10px;
     filter: drop-shadow(0px 0px 4px #D1D1D1);
 }
 
@@ -238,6 +225,39 @@ select {
     height: auto;
 }
 
+.date-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0 0 0;
+}
+
+.date-input-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    width: 100%;
+    height: 48px;
+    color: #333;
+    border-radius: 12px;
+    border-style: none;
+    padding: 12px;
+    filter: drop-shadow(0px 0px 4px #D1D1D1);
+}
+
+#file-input {
+    display: none;
+}
+
+.upload-placeholder {
+    font-family: fontInter;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 120%;
+    color: (117, 117, 117);
+}
 
 .assigned-to-select {
     width: 100%;
@@ -253,7 +273,6 @@ select {
     border-style: none;
     filter: drop-shadow(0px 0px 4px #D1D1D1);
     padding: 10px;
-
 }
 
 .assigned-to-select img.dropdown-arrow {
@@ -289,7 +308,6 @@ select {
     outline: none;
     border-style: solid;
     border-color: #29ABE2;
-
 }
 
 .user-container {
@@ -541,7 +559,6 @@ select {
     align-items: center;
 }
 
-
 .icon-btn {
     background: none;
     border: none;
@@ -574,7 +591,6 @@ select {
     gap: 8px;
     overflow: auto;
     background-color: transparent;
-    height: auto;
     width: 100%;
     align-items: center;
 }
@@ -605,7 +621,6 @@ select {
     display: flex;
     align-items: center;
     justify-content: center;
-
     position: relative;
 }
 
@@ -641,7 +656,6 @@ select {
 }
 
 .input-title {
-
     padding: 8px;
     width: 100%;
 }
@@ -737,7 +751,6 @@ select {
     white-space: nowrap;
     overflow: hidden;
 }
-
 
 .more-contacts-info {
     background-color: #2A3647;

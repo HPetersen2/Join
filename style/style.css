@@ -305,3 +305,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     cursor: pointer; margin-right: 24px;
     top: 168px; display: none;
 }
+
+@font-face {
+    font-family: fontInter;
+    src: url(./../fonts/Inter-VariableFont_opsz\,wght.ttf);
+  }
