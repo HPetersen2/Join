@@ -99,7 +99,7 @@ function getMoreUser(quantity) {
  * @param {string} prioIcon 
  * @returns The HTML template is returned.
  */
-function getOverlayDetails(id, classCategory, category, title, description, dueDate, priority, prioIcon) {
+function getOverlayDetails(id, classCategory, category, title, description, dueDate, priority, prioIcon, allFiles) {
     return `
     <div class="content-overlay">
         <div class="header-overlay">
@@ -127,6 +127,12 @@ function getOverlayDetails(id, classCategory, category, title, description, dueD
 
             </div>
             <div id="more-user-overlay">
+
+            </div>
+        </div>
+        <div>
+            <h4 id="attachments-overlay-headline">Attachments:</h4>
+            <div class="attachments-overlay" id="attachments-overlay">
 
             </div>
         </div>
@@ -193,7 +199,7 @@ function getMoreUserOverlay(quantity) {
 
 /**
  * This function creates an HTML template for the overlay and the display of the subtasks.
- * @param {numver} id 
+ * @param {number} id 
  * @param {number} subtaskId 
  * @param {string} status 
  * @param {string} title 
@@ -206,6 +212,15 @@ function getSubtasksOverlay(id, subtaskId, status, title, statusIcon) {
         <a onclick="changeStatusSubtask('${id}', '${subtaskId}', '${status}')"><img src="${statusIcon}" alt="status"></a>
         <p>${title}</p>
     </div>    
+    `
+}
+
+function getAttachmentsOverlay(id, attachmentId, name, base64) {
+    return `
+    <div class="file">
+        <img src="${base64}" alt="name">
+        <h5>${name}</h5>
+    </div>
     `
 }
 

@@ -109,9 +109,14 @@
                             <div class="date-input-container">
                                 <p>Attachments</p>
                                 <div class="date-input-field" onclick="openUpload()">
-                                    <p class="upload-placeholder" id="upload-field">Upload your attachments</p>
+                                    <div id="upload-field">
+                                        <p class="upload-placeholder">Upload your attachments</p>
+                                    </div>
                                     <img src="./assets/icons/upload.svg" alt="upload">
-                                    <input id="file-input" type="file">
+                                    <input id="file-input" type="file" accept="image/*">
+                                </div>
+                                <div id="errorUpload" class="error-upload">
+
                                 </div>
                             </div>
                             <div class="dropdown">
@@ -207,8 +212,7 @@
                                 </div>
                             </section>
                     </div>
-                    <p class="required-p" style="margin-top: 48px; margin-bottom: 10px; padding-left: 60px;">
-                        <span style="color: red;">*</span>This field is required
+                    <p class="required"><span style="color: red;">*</span>This field is required</p>
                 </div>
             </div>
         </main>

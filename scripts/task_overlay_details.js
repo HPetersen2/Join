@@ -105,6 +105,7 @@ function clearTask() {
     displayContacts(allContacts);
     clearAssignedContacts();
     fileInput.value = "";
+    allFiles = [];
     document.getElementById('upload-field').innerHTML = "Upload your attachments";
 
     const defaultButton = document.getElementById('prio-orange');

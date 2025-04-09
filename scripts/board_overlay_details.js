@@ -31,6 +31,11 @@ function renderOverlay(responseTaskJson) {
     } else {
         document.getElementById('subtask-headline-overlay').style = 'display: none';
     }
+    if(responseTaskJson.allFiles != undefined) {
+        renderOverlayAttachments(responseTaskJson);
+    } else {
+        document.getElementById('attachments-overlay-headline').style = 'display: none';
+    }
 }
 
 /**
@@ -94,5 +99,19 @@ async function renderOverlaySubtasks(responseTaskJson) {
             statusIcon = './assets/icons/unchecked_icon.png';
         }
         document.getElementById('subtasks-overlay').innerHTML += getSubtasksOverlay(id, subtaskId, status, title, statusIcon);
+    }
+}
+
+/**
+ * This function load the attachments from the reponse.
+ * @param {*} responseTaskJson - The task is transferred to the function as an object in order to determine the subtasks.
+ */
+async function renderOverlayAttachments(responseTaskJson) {
+    let id = responseTaskJson.id;
+    for (let i = 0; i < responseTaskJson.allFiles.length; i++) {
+        let attachmentId = [i];
+        let name = responseTaskJson.allFiles[i].fileName;
+        let base64 = responseTaskJson.allFiles[i].base64;
+        document.getElementById('attachments-overlay').innerHTML += getAttachmentsOverlay(id, attachmentId, name, base64);
     }
 }

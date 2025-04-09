@@ -141,7 +141,6 @@ function renderTasks(tasksJson) {
         let selectList = document.getElementById(`${list}`);
         if (selectList)
             selectList.innerHTML += getTask(id, category, classCategory, title, description, prioIcon);
-
         if (tasksArray[i].subtasks != undefined) {
             calculateSubtaskProgress(tasksArray[i].subtasks, id);
         }
