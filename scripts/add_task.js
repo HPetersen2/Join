@@ -136,7 +136,8 @@ function buildNewTask(id, title, description, dueDate, category, color) {
         category,
         list: "to-do",
         subtasks: subtasksArray,
-        assignedTo: selectedContacts
+        assignedTo: selectedContacts,
+        allFiles
     };
 }
 

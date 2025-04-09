@@ -104,6 +104,8 @@ function clearTask() {
     resetPriorityButtons();
     displayContacts(allContacts);
     clearAssignedContacts();
+    fileInput.value = "";
+    document.getElementById('upload-field').innerHTML = "Upload your attachments";
 
     const defaultButton = document.getElementById('prio-orange');
     if (defaultButton) {
