@@ -219,7 +219,7 @@ function getAttachmentsOverlay(id, attachmentId, name, base64) {
     return `
     <div class="file" id="attachment-container">
         <img src="${base64}" alt="name">
-        <h5>${name}</h5>
+        <h5>${name.slice(0, 6)}...${name.slice(-3)}</h5>
         <img class="remove-file no-viewer" onclick="deleteFile('${id}', '${attachmentId}')" src="assets/icons/close.svg" alt="remove">
     </div>
     `
@@ -294,7 +294,7 @@ function getOverlayEdit(id, title, description, dueDate) {
                     
                 </div>
             </div>
-            <div class="overlay-edit-container">
+            <div class="overlay-edit-container" id="subtask-add-container">
                 <label class="edit-overlay-label" for="subtask-edit">Subtasks</label>
                 <div class="overlay-edit-subtask">
                     <input class="overlay-input-field" placeholder="Add new subtask" type="text" name="subtask-edit" id="subtask-edit" maxlength="20"/>
@@ -313,7 +313,7 @@ function getOverlayEdit(id, title, description, dueDate) {
                 <button class="button-ok" onclick="saveEdit(${id})"><p>Ok</p><img src="./assets/icons/check.svg" alt=""></button>
             </div>
         </div>
-    </div>   
+    </div>
     `
 }
 

@@ -114,6 +114,12 @@
     box-shadow: 0px 0px 4px 0px #0000001A;
 }
 
+.date-input-field {
+    filter: none !important;
+    border: 1px solid #D1D1D1 !important;
+    border-radius: 10px !important;
+}
+
 #assigned-to {
     width: 100%;
     border-radius: 10px;
@@ -339,5 +345,34 @@
     }
     .overlay-priority-container {
         width: 300px;
+    }
+    #subtask-edit {
+        font-size: unset;
+    }
+    #urgent-text, #medium-text, #low-text {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 400px) {
+    .overlay-edit-container {
+        width: 250px;
+    }
+    .overlay-priority-container {
+        width: 250px;
+        overflow-x: scroll;
+    }
+    #subtask-edit {
+        font-size: unset;
+    }
+    #urgent-text, #medium-text, #low-text {
+        font-size: 11px;
+    }
+    #urgent-icon, #medium-icon, #low-icon {
+        width: 12px;
+        height: 12px;
+    }
+    #subtask-edit  {
+        width: 200px;
     }
 }

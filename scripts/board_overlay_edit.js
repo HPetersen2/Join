@@ -16,6 +16,7 @@ async function editTask(id, title, description, dueDate, priority) {
     selectedUserEdit(id);
     renderOverlayEditSubtasks(id);
     loadFileFromFirebase(id);
+    load = true;
     loadContacts(id);
     activeFlatPickr();
 }
@@ -99,6 +100,7 @@ function generateChangeTask(responseJson) {
     let title = document.getElementById('overlay-title').value;
     let description = document.getElementById('overlay-description').value;
     let dueDate = document.getElementById('due-date-input').value;
+    responseJson.allFiles = allFilesOverlay;
 
     if (title != "") {
         responseJson.title = title;
@@ -185,9 +187,11 @@ function renderOverlayContacts(id, responseJson, activeUserIndex) {
 async function loadActiveUser(id) {
     let task = await loadTaskWithID(id);
     let activeUser = [];
-    for (let i = 0; i < task.assignedTo.length; i++) {
-        let name = task.assignedTo[i].firstName + " " + task.assignedTo[i].lastName;
-        activeUser.push(name);
+    if(task.assignedTo != undefined) {
+        for (let i = 0; i < task.assignedTo.length; i++) {
+            let name = task.assignedTo[i].firstName + " " + task.assignedTo[i].lastName;
+            activeUser.push(name);
+        }
     }
     return activeUser;
 }
@@ -359,12 +363,14 @@ async function selectedUserEdit(id) {
     let responseJson = await loadTaskWithID(id);
     let usersFirstLetters = [];
     let colors = [];
-    for (let i = 0; i < responseJson.assignedTo.length; i++) {
-        let firstName = responseJson.assignedTo[i].firstName[0];
-        let lastName = responseJson.assignedTo[i].lastName[0];
-        let firstLetter = firstName + lastName;
-        usersFirstLetters.push(firstLetter);
-        colors.push(responseJson.assignedTo[i].color);
+    if(responseJson.assignedTo != undefined) {
+        for (let i = 0; i < responseJson.assignedTo.length; i++) {
+            let firstName = responseJson.assignedTo[i].firstName[0];
+            let lastName = responseJson.assignedTo[i].lastName[0];
+            let firstLetter = firstName + lastName;
+            usersFirstLetters.push(firstLetter);
+            colors.push(responseJson.assignedTo[i].color);
+        }
     }
     renderOverlayEditUser(usersFirstLetters, colors)
 }
