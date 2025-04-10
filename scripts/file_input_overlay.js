@@ -62,13 +62,11 @@ function waitForElementWithLoad(selector, callback) {
  */
 async function handleFileChange(inputEl) {
     const files = inputEl.files;
-    console.log(files);
     if (!files || files.length === 0) {
         console.log("No files selected.");
         return;
     }
     for (const file of files) {
-        console.log("Processing file:", file);
         if (!validateFile(file)) return;
         await processFile(file);
     }
