@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bower-npm-resolver": "^0.11.0",
-    "flatpickr": "^4.6.13"
+    "flatpickr": "^4.6.13",
+    "viewerjs": "^1.11.7"
   }
 }

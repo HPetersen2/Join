@@ -6,7 +6,6 @@
     <title>Add Task</title>
 
     <link rel="icon" href="./assets/img/join_logo_dark.png">
-
     <link rel="stylesheet" href="style/style.css">
     <link rel="stylesheet" href="style/standard.css">
     <link rel="stylesheet" href="style/legal_notice.css">
@@ -20,11 +19,14 @@
     <script src="scripts/task_overlay_details.js" defer></script>
     <script src="scripts/base_url.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    
     <script src="./scripts/script.js" defer></script>
-
 </head>
 
 <body id="main-page" onload="setUserInitials()">
+    <div id="image-viewer" style="display: none;">
+
+    </div>
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-logo">
@@ -244,6 +246,7 @@
         </div>
     </div>
 </body>
-    <script src="./scripts/date_input.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.5/viewer.min.js"></script>
+    <script src="./scripts/file_input.js"></script>
     <script src="scripts/add_task.js"></script>
 </html>

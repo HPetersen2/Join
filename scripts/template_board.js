@@ -122,17 +122,17 @@ function getOverlayDetails(id, classCategory, category, title, description, dueD
             </div>
         </div>
         <div>
+            <h4 id="attachments-overlay-headline">Attachments:</h4>
+            <div class="attachments-overlay" id="attachments-overlay">
+
+            </div>
+        </div>
+        <div>
             <h4>Assigned To:</h4>
             <div id="user-names-overlay">
 
             </div>
             <div id="more-user-overlay">
-
-            </div>
-        </div>
-        <div>
-            <h4 id="attachments-overlay-headline">Attachments:</h4>
-            <div class="attachments-overlay" id="attachments-overlay">
 
             </div>
         </div>
@@ -217,9 +217,10 @@ function getSubtasksOverlay(id, subtaskId, status, title, statusIcon) {
 
 function getAttachmentsOverlay(id, attachmentId, name, base64) {
     return `
-    <div class="file">
+    <div class="file" id="attachment-container">
         <img src="${base64}" alt="name">
         <h5>${name}</h5>
+        <img class="remove-file no-viewer" onclick="deleteFile('${id}', '${attachmentId}')" src="assets/icons/close.svg" alt="remove">
     </div>
     `
 }
@@ -263,6 +264,18 @@ function getOverlayEdit(id, title, description, dueDate) {
                     <div onclick="changePriority('Medium')" id="medium-label" class="prio-label"><p id="medium-text">Medium</p><img id="medium-icon"src="./assets/icons/medium_icon.png" alt="medium"></div>
                     <div onclick="changePriority('Low')" id="low-label" class="prio-label"><p id="low-text">Low</p><img id="low-icon" src="./assets/icons/low_icon.png" alt="low"></div>
                 </div>    
+            </div>
+            <div class="date-input-container overlay-edit-container">
+                <p>Attachments</p>
+            <div class="date-input-field" onclick="openUploadOverlay()">
+                <div id="upload-field-overlay">
+                    <p class="upload-placeholder">Upload your attachments</p>
+                </div>
+                <img src="./assets/icons/upload.svg" alt="upload">
+                <input id="file-input-overlay" type="file" accept="image/*">
+            </div>
+            <div id="errorUploadOverlay" class="error-upload">
+
             </div>
             <div class="overlay-edit-container">
                 <label class="edit-overlay-label" for="assigned-to">Assigned to</label>

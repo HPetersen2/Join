@@ -7,16 +7,16 @@
   <title>Board</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-  <script src="./scripts/template_board.js"></script>
   <script src="./scripts/script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="./scripts/template_board.js"></script>
   <script src="./scripts/board.js"></script>
   <script src="./scripts/board_overlay_details.js"></script>
   <script src="./scripts/board_overlay_edit.js"></script>
   <script src="scripts/add_task_overlay.js"></script>
-
-
   <link rel="icon" href="./assets/img/join_logo_dark.png" />
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.css" integrity="sha512-9NawOLzuLE2GD22PJ6IPWXEjPalb/FpdH1qMpgXdaDM+0OfxEV75ZCle6KhZi0vM6ZWvMrNnIZv6YnsL+keVmA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="style/style.css" />
   <link rel="stylesheet" href="style/standard.css" />
   <link rel="stylesheet" href="style/legal_notice.css" />
@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="style/add_task.css" />
   <link rel="stylesheet" href="style/responsive.css">
   <link rel="stylesheet" href="style/iframe_overlay_content.css">
+
 
 </head>
 
@@ -180,6 +181,7 @@
     </main>
   </div>
   <div class="task-details" id="task-details">
+    <div id="image-viewer" style="display: none;"></div>
 
   </div>
 
@@ -211,8 +213,7 @@
       <img class="closebttn" src="./assets/icons/clear-icon.png" alt="ClearIcon">
     </button>
   </div>
-
   <link rel="stylesheet" href="style/add_task_overlay.css">
+  <script src="scripts/file_input_overlay.js"></script>
 </body>
-
 </html>

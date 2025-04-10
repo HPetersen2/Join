@@ -1,41 +1,40 @@
+
+/**
+ * Reference to the file input and definition of an empty array for the uploaded files.
+ */
 const fileInput = document.getElementById('file-input');
 let allFiles = [];
 
+
+/**
+ * This function waits for a file to be uploaded. The image is then validated, compressed and saved in the array. It is then also rendered.
+ */
 fileInput.addEventListener('change', async () => {
     const files = fileInput.files;
-    if(files.length > 0) {
+    if (files.length > 0) {
         Array.from(files).forEach(async file => {
-            if (!file.type.startsWith('image/')) {
-                errorUpload.textContent = `Die Datei "${file.name}" ist kein gültiges Bild.`
+            if(allFiles.length >= 3) {
+                errorUpload.textContent = `Es sind maximal 3 Bilder erlaubt.`;
                 return;
             }
-            const blob = new Blob([file], {type: file.type});
+            if (!file.type.startsWith('image/')) {
+                errorUpload.textContent = `Die Datei "${file.name}" ist kein gültiges Bild.`;
+                return;
+            }
             const uploadFieldRef = document.getElementById('upload-field');
             uploadFieldRef.innerHTML = "";
             const compressedBase64 = await compressImage(file, 800, 800, 0.8);
             allFiles.push({
                 fileName: file.name,
+                fileShortName: file.name.slice(0, 6),
+                fileEndName: file.name.slice(-3),
                 fileType: file.type,
                 base64: compressedBase64,
             });
-            allFiles.forEach((file) => uploadFieldRef.innerHTML += `<div class="file-add-task"><img class="view-upload" src="${file.base64}" alt="${file.fileName}"><p class="file-add-task-name">${file.fileName}</div>`);
+            allFiles.forEach((file) => uploadFieldRef.innerHTML += `<div class="file-add-task"><img class="view-upload" src="${file.base64}" alt="${file.fileName}"><p class="file-add-task-name">${file.fileShortName}...${file.fileEndName}</div>`);
         });
     }
 });
-
-/**
- * This function generate a base64 object from a blob.
- * @param {*} blob 
- * @returns URL
- */
-function blobToBase64(blob) {
-    return new Promise((resolve, _) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    });
-  }
-
 /**
  * This function open the file upload.
  */
@@ -44,12 +43,12 @@ function openUpload() {
 }
 
 /**
- * Komprimiert ein Bild auf eine Zielgröße oder -qualität
- * @param {File} file - Die Bilddatei, die komprimiert werden soll
- * @param {number} maxWidth - Die maximale Breite des Bildes
- * @param {number} maxHeight - Die maximale Höhe des Bildes
- * @param {number} quality - Qualität des komprimierten Bildes (zwischen 0 und 1)
- * @returns {Promise<string>} - Base64-String des komprimierten Bildes
+ * Compresses an image to a target size or quality.
+ * @param {File} file - The image file to be compressed.
+ * @param {number} maxWidth - The maximum width of the image.
+ * @param {number} maxHeight - The maximum height of the image.
+ * @param {number} quality - Quality of the compressed image (between 0 and 1).
+ * @returns {Promise<string>} - Base64 string of the compressed image.
  */
 function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {

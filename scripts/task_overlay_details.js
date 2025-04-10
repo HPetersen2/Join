@@ -104,6 +104,7 @@ function clearTask() {
     resetPriorityButtons();
     displayContacts(allContacts);
     clearAssignedContacts();
+    errorUpload.textContent = "";
     fileInput.value = "";
     allFiles = [];
     document.getElementById('upload-field').innerHTML = "Upload your attachments";

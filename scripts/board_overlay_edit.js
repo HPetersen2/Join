@@ -15,6 +15,7 @@ async function editTask(id, title, description, dueDate, priority) {
     checkActivePriority(priority);
     selectedUserEdit(id);
     renderOverlayEditSubtasks(id);
+    loadFileFromFirebase(id);
     loadContacts(id);
     activeFlatPickr();
 }

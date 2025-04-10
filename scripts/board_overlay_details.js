@@ -108,10 +108,40 @@ async function renderOverlaySubtasks(responseTaskJson) {
  */
 async function renderOverlayAttachments(responseTaskJson) {
     let id = responseTaskJson.id;
+    document.getElementById('attachments-overlay').innerHTML = "";
+    if(responseTaskJson.allFiles.length <= 0) {
+        document.getElementById('attachments-overlay-headline').style = 'display: none';
+    }
     for (let i = 0; i < responseTaskJson.allFiles.length; i++) {
         let attachmentId = [i];
         let name = responseTaskJson.allFiles[i].fileName;
         let base64 = responseTaskJson.allFiles[i].base64;
         document.getElementById('attachments-overlay').innerHTML += getAttachmentsOverlay(id, attachmentId, name, base64);
     }
+    const gallery = new Viewer(document.getElementById('attachments-overlay'), {
+        filter(image) {
+          return !image.classList.contains('no-viewer');
+        }
+    });
+}
+
+/**
+ * This function deletes a attachment.
+ * @param {number} taskId 
+ * @param {number} attachmentId 
+ */
+async function deleteFile(taskId, attachmentId) {
+    taskId--;
+    let task = await loadTaskWithID(taskId);
+    if (task.allFiles !== -1) {
+        task.allFiles.splice(attachmentId, 1);
+        await fetch(BASE_URL + "/tasks/" + taskId + ".json", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(task),
+        });
+    }
+    renderOverlayAttachments(task);
 }
