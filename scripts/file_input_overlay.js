@@ -33,9 +33,7 @@ function checkEmptyAllFilesOverlay() {
  * This function waits for a file to be uploaded. The image is then validated, compressed and saved in the array. It is then also rendered.
  */
 function initFileInputOverlay() {
-    console.log("Waiting for file input overlay...");
     waitForElementWithLoad('#file-input-overlay', (inputEl) => {
-        console.log("File input overlay found:", inputEl);
         inputEl.addEventListener('change', () => handleFileChange(inputEl));
     });
 }
