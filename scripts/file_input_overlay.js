@@ -1,71 +1,78 @@
-
-/**
- * Reference to the file input and definition of an empty array for the uploaded files.
- */
-const fileInputOverlay = document.getElementById('file-input-overlay');
 let allFilesOverlay = [];
 let load = false;
 
-async function loadFileFromFirebase(taskId) {
-    let response = await fetch(BASE_URL + "/tasks/" + taskId + ".json")
-    let reponseJSON = await response.json();
-    allFilesOverlay = reponseJSON.allFiles;
+/**
+ * Sets the load flag to true once the window is fully loaded.
+ */
+window.addEventListener('load', () => {
+    load = true;
     checkEmptyAllFilesOverlay();
-    if (allFilesOverlay != undefined) {
-        allFilesOverlay.forEach((file) => document.getElementById('upload-field-overlay').innerHTML += `<div class="file-add-task"><img class="view-upload" src="${file.base64}" alt="${file.fileName}"><p class="file-add-task-name" style="font-size: 11px;">${file.fileShortName}...${file.fileEndName}</div>`);
+});
+
+/**
+ * Loads previously uploaded files from Firebase and displays them.
+ * 
+ * @param {string} taskId - ID of the task to load files for.
+ */
+async function loadFileFromFirebase(taskId) {
+    const response = await fetch(BASE_URL + "/tasks/" + taskId + ".json");
+    const responseJSON = await response.json();
+    allFilesOverlay = responseJSON.allFiles || [];
+
+    checkEmptyAllFilesOverlay();
+
+    if (allFilesOverlay.length > 0) {
+        const uploadField = document.getElementById('upload-field-overlay');
+        uploadField.innerHTML = "";
+        allFilesOverlay.forEach(renderFilePreview);
     }
 }
 
 /**
- * This function is checking length from the files array. Is this empty render placeholder.
+ * Updates the UI with a placeholder if there are no files uploaded.
  */
 function checkEmptyAllFilesOverlay() {
-    if(allFilesOverlay != undefined) {
-        if(allFilesOverlay.length > 0) {
-            document.getElementById('upload-field-overlay').innerHTML = "";
-        } else if(allFilesOverlay.length <= 0) {
-            document.getElementById('upload-field-overlay').innerHTML = `<p class="upload-placeholder">Upload your attachments</p>`;
-        }
+    const uploadField = document.getElementById('upload-field-overlay');
+    if (!uploadField) return;
+
+    if (allFilesOverlay.length === 0) {
+        uploadField.innerHTML = `<p class="upload-placeholder">Upload your attachments</p>`;
+    } else {
+        uploadField.innerHTML = "";
     }
 }
 
 /**
- * This function waits for a file to be uploaded. The image is then validated, compressed and saved in the array. It is then also rendered.
+ * Opens the hidden file input field and sets up the event listener if not already attached.
  */
-function initFileInputOverlay() {
-    waitForElementWithLoad('#file-input-overlay', (inputEl) => {
-        inputEl.addEventListener('change', () => handleFileChange(inputEl));
-    });
-}
+function openUploadOverlay() {
+    const inputEl = document.getElementById('file-input-overlay');
 
-/**
- * Waits until both the load flag is true and the specified DOM element exists, then runs the callback.
- * 
- * @param {string} selector - CSS selector of the target element.
- * @param {Function} callback - Function to call once the element is available and load is true.
- */
-function waitForElementWithLoad(selector, callback) {
-    const check = setInterval(() => {
-        if (!load) return;
-        const el = document.querySelector(selector);
-        if (el) {
-            clearInterval(check);
-            callback(el);
-        }
-    }, 5);
+    if (!inputEl) {
+        console.warn('file-input-overlay is not in the DOM.');
+        return;
+    }
+
+    // Only add the listener once
+    if (!inputEl.dataset.listenerAttached) {
+        inputEl.addEventListener('change', () => handleFileChange(inputEl));
+        inputEl.dataset.listenerAttached = "true";
+    }
+
+    inputEl.click();
 }
 
 /**
  * Handles the file input change event and processes each selected file.
  * 
- * @param {HTMLInputElement} inputEl - The file input element.
+ * @param {HTMLInputElement} inputEl - The hidden file input element.
  */
 async function handleFileChange(inputEl) {
     const files = inputEl.files;
     if (!files || files.length === 0) {
-        console.log("No files selected.");
         return;
     }
+
     for (const file of files) {
         if (!validateFile(file)) return;
         await processFile(file);
@@ -75,42 +82,46 @@ async function handleFileChange(inputEl) {
 /**
  * Validates a selected file based on type and upload limits.
  * 
- * @param {File} file - The file to validate.
+ * @param {File} file - The selected file.
  * @returns {boolean} - True if the file is valid, otherwise false.
  */
 function validateFile(file) {
     if (allFilesOverlay.length >= 3) {
         if (errorUploadOverlay) {
-            errorUploadOverlay.textContent = `Es sind maximal 3 Bilder erlaubt.`;
+            errorUploadOverlay.textContent = `A maximum of 3 images is allowed.`;
         }
         return false;
     }
+
     if (!file.type.startsWith('image/')) {
         if (errorUploadOverlay) {
-            errorUploadOverlay.textContent = `Die Datei "${file.name}" ist kein gültiges Bild.`;
+            errorUploadOverlay.textContent = `The file "${file.name}" is not a valid image.`;
         }
         return false;
     }
+
     return true;
 }
 
 /**
- * Compresses and processes a valid image file, updates the UI, and stores it.
+ * Compresses and processes a valid image file, updates the UI, and stores it in the array.
  * 
  * @param {File} file - The image file to process.
  */
 async function processFile(file) {
     const uploadField = document.getElementById('upload-field-overlay');
     uploadField.innerHTML = "";
+
     const compressedBase64 = await compressImage(file, 800, 800, 0.8);
-    const fileInfo = {
+
+    allFilesOverlay.push({
         fileName: file.name,
         fileShortName: file.name.slice(0, 6),
         fileEndName: file.name.slice(-3),
         fileType: file.type,
         base64: compressedBase64,
-    };
-    allFilesOverlay.push(fileInfo);
+    });
+
     allFilesOverlay.forEach(renderFilePreview);
 }
 
@@ -120,7 +131,7 @@ async function processFile(file) {
  * @param {Object} file - The file object containing metadata and base64 image data.
  * @param {string} file.fileName - Full name of the file.
  * @param {string} file.fileShortName - Shortened beginning of the file name.
- * @param {string} file.fileEndName - File extension or ending characters.
+ * @param {string} file.fileEndName - File extension or last characters.
  * @param {string} file.base64 - Base64-encoded image data.
  */
 function renderFilePreview(file) {
@@ -132,22 +143,14 @@ function renderFilePreview(file) {
         </div>`;
 }
 
-document.addEventListener('DOMContentLoaded', initFileInputOverlay);
-
-/**
- * This function open the file upload.
- */
-function openUploadOverlay() {
-    document.getElementById('file-input-overlay').click();
-}
-
 /**
  * Compresses an image to a target size or quality.
- * @param {File} file - The image file to be compressed.
- * @param {number} maxWidth - The maximum width of the image.
- * @param {number} maxHeight - The maximum height of the image.
- * @param {number} quality - Quality of the compressed image (between 0 and 1).
- * @returns {Promise<string>} - Base64 string of the compressed image.
+ * 
+ * @param {File} file - The image file to compress.
+ * @param {number} maxWidth - The maximum width of the compressed image.
+ * @param {number} maxHeight - The maximum height of the compressed image.
+ * @param {number} quality - Compression quality (0 to 1).
+ * @returns {Promise<string>} - A Promise that resolves with the base64 image string.
  */
 function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
@@ -159,10 +162,10 @@ function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
                 const canvas = document.createElement('canvas');
                 const ctx = canvas.getContext('2d');
 
-                // Berechnung der neuen Größe, um die Proportionen beizubehalten
                 let width = img.width;
                 let height = img.height;
 
+                // Maintain aspect ratio
                 if (width > maxWidth || height > maxHeight) {
                     if (width > height) {
                         height = (height * maxWidth) / width;
@@ -175,19 +178,17 @@ function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
 
                 canvas.width = width;
                 canvas.height = height;
-
-                // Zeichne das Bild in das Canvas
                 ctx.drawImage(img, 0, 0, width, height);
 
-                // Exportiere das Bild als Base64
                 const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
                 resolve(compressedBase64);
             };
 
-            img.onerror = () => reject('Fehler beim Laden des Bildes.');
+            img.onerror = () => reject('Error loading the image.');
             img.src = event.target.result;
         };
-        reader.onerror = () => reject('Fehler beim Lesen der Datei.');
+
+        reader.onerror = () => reject('Error reading the file.');
         reader.readAsDataURL(file);
     });
 }
