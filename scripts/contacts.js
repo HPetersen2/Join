@@ -388,18 +388,3 @@ fetchContacts().then(() => {
     sortContacts();
     displayContacts(contacts);
 });
-
-// Vor dem Hinzufügen des Event-Listeners überprüfen, ob das Element existiert
-const saveButton = document.getElementById('saveContactAdd');
-if (saveButton) {
-    saveButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        if (document.getElementById('contactForm').checkValidity()) {
-            // Formular ist gültig, kannst du die Logik zum Absenden ausführen
-            createContact();
-        } else {
-            // Formular ist ungültig, zeige eine Fehlermeldung oder markiere ungültige Felder
-            alert('Bitte fülle alle Felder korrekt aus.');
-        }
-    });
-}
