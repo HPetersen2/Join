@@ -30,7 +30,7 @@
                 <div class="msg-pop-up notification">
                     <span id="pop-up-notification">Notification</span>
                 </div>
-                <form onsubmit="signUpUser(); return false;">
+                <form novalidate  onsubmit="signUpUser(); return false;">
                     <input type="text" name="Name" placeholder="Name" id="signup-name" required>
                     <input type="email" name="Email" placeholder="Email" id="signup-email" required>
                     <div class="input-password">
@@ -45,15 +45,15 @@
                         <span class="error-message hidden" id="check-password">Your passwords don't match. Please try again.</span>
                     </div>  
                     <div class="input-checkbox">
-                        <input type="checkbox" value="false" class="checkbox-privacy" id="privacy-checkbox"> <label for="privacy-checkbox"> I accept the <a class="signup-privacy-link">Privacy policy</a></label>
+                        <input type="checkbox" value="false" class="checkbox-privacy" id="privacy-checkbox"> <label for="privacy-checkbox"> I accept the <a href="./privacypolicy_external.html" class="signup-privacy-link">Privacy policy</a></label>
                     </div>
                     <button class="btn-primary signup-btn">Sign up</button>    
                 </form>           
             </div>
         </div>
         <footer class="privacy-legal">
-            <a href="./privacy_policy.html">Privacy Policy</a>
-            <a href="./legal_notice.html">Legal Notice</a>
+            <a href="./privacypolicy_external.html">Privacy Policy</a>
+            <a href="./legalnotice_external.html">Legal Notice</a
         </footer>
     </div>
     <div class="success-signed">

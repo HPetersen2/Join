@@ -449,3 +449,11 @@ function formatContact(contact) {
     return { ...contact, firstName, lastName };
 }
 
+/**
+ * Load photo-viewer in add task.
+ */
+const galleryAddTask = new Viewer(document.getElementById('upload-field'), {
+    filter(image) {
+      return !image.classList.contains('no-viewer');
+    }
+});

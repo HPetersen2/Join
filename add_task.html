@@ -15,18 +15,15 @@
     <link rel="stylesheet" href="style/responsive.css">
     <link rel="stylesheet" href="style/summary.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.css" integrity="sha512-9NawOLzuLE2GD22PJ6IPWXEjPalb/FpdH1qMpgXdaDM+0OfxEV75ZCle6KhZi0vM6ZWvMrNnIZv6YnsL+keVmA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="./scripts/task_details.js" defer></script>
     <script src="scripts/task_overlay_details.js" defer></script>
     <script src="scripts/base_url.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    
     <script src="./scripts/script.js" defer></script>
 </head>
 
 <body id="main-page" onload="setUserInitials()">
-    <div id="image-viewer" style="display: none;">
-
-    </div>
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-logo">
@@ -43,6 +40,7 @@
                 </a>
                 <a href="./board.html" class="main-link">
                     <img src="./assets/icons/board_icon.png" alt="board_icon">
+
                     Board
                 </a>
                 <a href="./contacts.html" class="main-link">
@@ -109,12 +107,12 @@
                                 <img src="./assets/icons/description-icon.png" alt="logo">
                             </div>
                             <div class="date-input-container">
-                                <p>Attachments</p>
-                                <div class="date-input-field" onclick="openUpload()">
+                                <p class="no-viewer">Attachments</p>
+                                <div class="date-input-field no-viewer">
                                     <div id="upload-field">
-                                        <p class="upload-placeholder">Upload your attachments</p>
+                                        <p class="upload-placeholder" onclick="openUpload()">Upload your attachments</p>
                                     </div>
-                                    <img src="./assets/icons/upload.svg" alt="upload">
+                                    <img src="./assets/icons/upload.svg" alt="upload" class="no-viewer" onclick="openUpload()">
                                     <input id="file-input" type="file" accept="image/*">
                                 </div>
                                 <div id="errorUpload" class="error-upload">
@@ -246,7 +244,7 @@
         </div>
     </div>
 </body>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.5/viewer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./scripts/file_input.js"></script>
     <script src="scripts/add_task.js"></script>
 </html>

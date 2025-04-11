@@ -53,7 +53,6 @@ function openUploadOverlay() {
         return;
     }
 
-    // Only add the listener once
     if (!inputEl.dataset.listenerAttached) {
         inputEl.addEventListener('change', () => handleFileChange(inputEl));
         inputEl.dataset.listenerAttached = "true";
@@ -144,51 +143,87 @@ function renderFilePreview(file) {
 }
 
 /**
- * Compresses an image to a target size or quality.
- * 
+ * Compresses an image file to the target size and quality.
+ *
  * @param {File} file - The image file to compress.
- * @param {number} maxWidth - The maximum width of the compressed image.
- * @param {number} maxHeight - The maximum height of the compressed image.
+ * @param {number} maxWidth - Maximum allowed width.
+ * @param {number} maxHeight - Maximum allowed height.
  * @param {number} quality - Compression quality (0 to 1).
- * @returns {Promise<string>} - A Promise that resolves with the base64 image string.
+ * @returns {Promise<string>} A promise that resolves with a base64 string.
  */
 function compressImage(file, maxWidth = 800, maxHeight = 800, quality = 0.8) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
 
         reader.onload = (event) => {
-            const img = new Image();
-            img.onload = () => {
-                const canvas = document.createElement('canvas');
-                const ctx = canvas.getContext('2d');
-
-                let width = img.width;
-                let height = img.height;
-
-                // Maintain aspect ratio
-                if (width > maxWidth || height > maxHeight) {
-                    if (width > height) {
-                        height = (height * maxWidth) / width;
-                        width = maxWidth;
-                    } else {
-                        width = (width * maxHeight) / height;
-                        height = maxHeight;
-                    }
-                }
-
-                canvas.width = width;
-                canvas.height = height;
-                ctx.drawImage(img, 0, 0, width, height);
-
-                const compressedBase64 = canvas.toDataURL('image/jpeg', quality);
-                resolve(compressedBase64);
-            };
-
-            img.onerror = () => reject('Error loading the image.');
-            img.src = event.target.result;
+            handleImageLoad(event.target.result, maxWidth, maxHeight, quality)
+                .then(resolve)
+                .catch(() => reject('Error loading the image.'));
         };
 
         reader.onerror = () => reject('Error reading the file.');
         reader.readAsDataURL(file);
     });
+}
+
+/**
+ * Handles image loading and compression from a data URL.
+ *
+ * @param {string} dataUrl - Base64 data URL of the image.
+ * @param {number} maxWidth - Max width for compression.
+ * @param {number} maxHeight - Max height for compression.
+ * @param {number} quality - JPEG quality (0 to 1).
+ * @returns {Promise<string>} Compressed base64 image.
+ */
+function handleImageLoad(dataUrl, maxWidth, maxHeight, quality) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+
+        img.onload = () => {
+            const { width, height } = getScaledDimensions(img.width, img.height, maxWidth, maxHeight);
+            const canvas = createCanvas(width, height);
+            canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+            const base64 = canvas.toDataURL('image/jpeg', quality);
+            resolve(base64);
+        };
+
+        img.onerror = reject;
+        img.src = dataUrl;
+    });
+}
+
+/**
+ * Calculates scaled dimensions while preserving aspect ratio.
+ *
+ * @param {number} width - Original image width.
+ * @param {number} height - Original image height.
+ * @param {number} maxWidth - Max width constraint.
+ * @param {number} maxHeight - Max height constraint.
+ * @returns {{ width: number, height: number }} Scaled width and height.
+ */
+function getScaledDimensions(width, height, maxWidth, maxHeight) {
+    if (width > maxWidth || height > maxHeight) {
+        if (width > height) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+        } else {
+            width = (width * maxHeight) / height;
+            height = maxHeight;
+        }
+    }
+    return { width, height };
+}
+
+/**
+ * Creates a canvas element with specified dimensions.
+ *
+ * @param {number} width - Canvas width.
+ * @param {number} height - Canvas height.
+ * @returns {HTMLCanvasElement} The created canvas element.
+ */
+function createCanvas(width, height) {
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    return canvas;
 }

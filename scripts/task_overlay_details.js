@@ -104,11 +104,13 @@ function clearTask() {
     resetPriorityButtons();
     displayContacts(allContacts);
     clearAssignedContacts();
-    errorUpload.textContent = "";
-    fileInput.value = "";
-    allFiles = [];
-    document.getElementById('upload-field').innerHTML = "Upload your attachments";
-
+    document.getElementById('error-message').innerHTML = "";
+    document.getElementById('title').classList.remove('error');
+    document.getElementById('title').style = 'border: none;';
+    document.getElementById('date-error-message').innerHTML = "";
+    document.getElementById('due-date-input').style = 'border: none;'
+    document.getElementById('category-error-message').innerHTML = "";
+    document.getElementById('selectcategory').style = "";
     const defaultButton = document.getElementById('prio-orange');
     if (defaultButton) {
         changeColor(defaultButton, 'orange');

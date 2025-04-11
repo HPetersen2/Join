@@ -267,12 +267,7 @@
     }
 }
 
-/*⬇️⬇️⬇️ ADD-TASK-RESPONSIVE⬇️⬇️⬇️  */
 @media (min-width: 1200px) {
-    .content-right {
-        /* height: auto !important; */
-    }
-
     #main-page .required-p {
         margin-top: -24px !important;
         margin-bottom: 10px;
@@ -298,8 +293,8 @@
         display: none;
         position: fixed !important;
         width: 440px !important;
-        top: 626px !important;
-        height: 190px !important;
+        top: 737px !important;
+        height: 120px !important;
         z-index: 1 !important;
     }
 
@@ -358,8 +353,6 @@
         background-color: #D1D1D1;
     }
 }
-
-/* ⬇️⬇️⬇️SUMMARY-RESPONSIVE⬇️⬇️⬇️ */
 
 @media (max-width: 1120px) {
     .greeting-user {
@@ -636,7 +629,7 @@
         font-size: 38px;
     }
 
-    #picked-user-avatar {
+    .delete-user-button, .picked-user-name {
         display: none !important;
     }
 
@@ -681,18 +674,6 @@
 @media (max-width: 520px) {
     #main-page .overlay-hl {
         font-size: 38px;
-    }
-
-    #main-page #dropdown-user {
-        position: fixed !important;
-        z-index: 1;
-        left: 0;
-        right: 0;
-        filter: drop-shadow(0px 0px 4px black);
-        border: #29ABE2;
-        border-style: solid;
-        height: 224px;
-        bottom: 70px;
     }
 
     #main-page #title {
@@ -747,12 +728,6 @@
         height: 36px;
     }
 
-    #main-page .input-container,
-    #main-page .subtask-p,
-    #main-page #addsubtasks {
-        display: none;
-    }
-
     #main-page #create {
         height: 48px;
         width: 138px;
@@ -765,6 +740,11 @@
         height: 48px;
         font-size: 18px;
 
+    }
+
+    .required {
+        margin: 30px 0 0 30px;
+        padding: 0 0 30px 0;
     }
 
     .tasks-board-container,
@@ -800,96 +780,4 @@
     #priory-date {
         font-size: 16px !important;
     }
-}
-
-
-@media(max-width:320px) {
-    .summary-content-container {
-        width: -webkit-fill-available !important;
-        padding: 36px 4% 0px 4% !important;
-        justify-content: flex-start !important;
-        background-color: transparent !important;
-        gap: 24px !important;
-        margin-top: 24px !important;
-    }
-
-    .todo-container,
-    .done-container {
-        height: 100px !important;
-        transform: none !important;
-        scale: 1 !important;
-        translate: none !important;
-        transition: none !important;
-    }
-
-    #required-p {
-        display: none;
-    }
-
-    #prio-p,
-    #description-p {
-        margin-top: 0px !important;
-    }
-
-    #date-p {
-        margin-bottom: 10px;
-        margin-top: 6px;
-    }
-
-    #assignedto-p {
-        margin-bottom: 10px;
-        margin-top: 10px;
-    }
-
-    .confirm {
-        margin-top: 20px !important;
-    }
-
-    .key-metrics-span {
-        font-size: 16px !important;
-        padding: 0px 0px 0px 0px !important;
-    }
-
-    .todo-icon,
-    .done-icon,
-    .prioimg {
-        height: 38px !important;
-        width: 38px !important;
-    }
-
-    #main-page #dropdown-user {
-        display: none;
-        position: fixed !important;
-        z-index: 1;
-        left: 0;
-        right: 0;
-        filter: drop-shadow(0px 0px 4px black);
-        border: #29ABE2;
-        border-style: solid;
-        height: 224px;
-        bottom: 70px;
-    }
-
-    #main-page #picked-user-avatar {
-        display: none;
-    }
-
-    #main-page #create {
-        height: 42px;
-        width: 138px;
-        gap: 0px;
-        white-space: nowrap;
-        font-size: 18px;
-    }
-
-    #main-page #clear {
-        height: 42px;
-        font-size: 18px;
-
-    }
-
-    #date-p {
-        margin-top: 6px;
-    }
-
 }

@@ -247,7 +247,13 @@
 
 @media (max-width: 768px) {
     .task-details {
-        width: 450px;
+        width: 370px;
+    }
+}
+
+@media (max-width: 720px) {
+    .task-details {
+        height: 600px;
     }
 }
 

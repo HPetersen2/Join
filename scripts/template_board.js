@@ -218,7 +218,7 @@ function getSubtasksOverlay(id, subtaskId, status, title, statusIcon) {
 function getAttachmentsOverlay(id, attachmentId, name, base64) {
     return `
     <div class="file" id="attachment-container">
-        <img src="${base64}" alt="name">
+        <img onclick="gallery.show()" src="${base64}" alt="name">
         <h5>${name.slice(0, 6)}...${name.slice(-3)}</h5>
         <img class="remove-file no-viewer" onclick="deleteFile('${id}', '${attachmentId}')" src="assets/icons/close.svg" alt="remove">
     </div>
@@ -267,11 +267,11 @@ function getOverlayEdit(id, title, description, dueDate) {
             </div>
             <div class="date-input-container overlay-edit-container">
                 <p>Attachments</p>
-            <div class="date-input-field" onclick="openUploadOverlay()">
+            <div class="date-input-field">
                 <div id="upload-field-overlay">
-                    <p class="upload-placeholder">Upload your attachments</p>
+                    <p class="upload-placeholder" onclick="openUploadOverlay()">Upload your attachments</p>
                 </div>
-                <img src="./assets/icons/upload.svg" alt="upload">
+                <img src="./assets/icons/upload.svg" alt="upload" onclick="openUploadOverlay()">
                 <input id="file-input-overlay" type="file" accept="image/*">
             </div>
             <div id="errorUploadOverlay" class="error-upload">
