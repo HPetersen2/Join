@@ -47,7 +47,6 @@ function checkEmptyAllFilesOverlay() {
  */
 function openUploadOverlay() {
     const inputEl = document.getElementById('file-input-overlay');
-
     if (!inputEl) {
         console.warn('file-input-overlay is not in the DOM.');
         return;
@@ -57,7 +56,6 @@ function openUploadOverlay() {
         inputEl.addEventListener('change', () => handleFileChange(inputEl));
         inputEl.dataset.listenerAttached = "true";
     }
-
     inputEl.click();
 }
 

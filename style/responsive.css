@@ -44,8 +44,7 @@
     .done {
         display: flex;
         gap: 12px;
-        overflow: overlay;
-        scrollbar-width: none;
+        overflow-x: scroll;
     }
 }
 

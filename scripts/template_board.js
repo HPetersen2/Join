@@ -218,7 +218,7 @@ function getSubtasksOverlay(id, subtaskId, status, title, statusIcon) {
 function getAttachmentsOverlay(id, attachmentId, name, base64) {
     return `
     <div class="file" id="attachment-container">
-        <img onclick="gallery.show()" src="${base64}" alt="name">
+        <img onclick="galleryDetail.show()" src="${base64}" alt="name">
         <h5>${name.slice(0, 6)}...${name.slice(-3)}</h5>
         <img class="remove-file no-viewer" onclick="deleteFile('${id}', '${attachmentId}')" src="assets/icons/close.svg" alt="remove">
     </div>

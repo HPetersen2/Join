@@ -118,7 +118,7 @@ async function renderOverlayAttachments(responseTaskJson) {
         let base64 = responseTaskJson.allFiles[i].base64;
         document.getElementById('attachments-overlay').innerHTML += getAttachmentsOverlay(id, attachmentId, name, base64);
     }
-    const gallery = new Viewer(document.getElementById('attachments-overlay'), {
+    const galleryDetail = new Viewer(document.getElementById('attachments-overlay'), {
         filter(image) {
           return !image.classList.contains('no-viewer');
         }

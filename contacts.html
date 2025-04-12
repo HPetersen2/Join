@@ -58,7 +58,7 @@
     <main class="main-content">
 
         <div id="addContactForm">
-            <form onsubmit="createContact(); return false;">
+            <form novalidate onsubmit="submitContact(); return false;">
                 <div class="leftContactOverlay">
                     <img class="addContactLogo" src="assets/img/join_logo.png" alt="Join-Logo">
                     <div class="leftContactText">
@@ -82,17 +82,20 @@
                         <div style="position: relative;">
                             <input required class="addName" type="text" id="addName" name="name" placeholder="Name" />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/person_icon.png" alt="Person">
+                            <span class="disabled-msg" id="name-input-msg">Please enter a valid name.</span>
                         </div>
         
                         <div style="position: relative;">
                             <input required class="addEmail" type="email" id="addEmail" name="email" placeholder="Email" />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/mail_icon.png" alt="Email">
+                            <span class="disabled-msg" id="email-input-msg">Please enter a valid email.</span>
                         </div>
         
                         <div style="position: relative;">
                             <input required class="addPhone" type="tel" id="addPhone" name="phone" placeholder="Phone" maxlength="20" pattern="\+?[0-9]+"
                                 title="Please enter only numbers."/>
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/phone_icon.png" alt="Phone">
+                            <span class="disabled-msg" id="phone-input-msg">Please enter only numbers.</span>
                         </div>
                         
         
@@ -116,7 +119,7 @@
         
 
         <div id="editContactForm">
-            <form onsubmit="saveEditChanges(); return false;">
+            <form novalidate onsubmit="saveEditChanges(); return false;">
                 <div class="leftContactOverlay">
                     <img class="editContactLogo" src="assets/img/join_logo.png" alt="Join-Logo">
                     <p class="editContactHeadline" id="editContactHeadline">Edit contact</p>

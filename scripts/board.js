@@ -47,15 +47,17 @@ function saveInArray(tasksJson) {
  */
 async function searchTask(type, e) {
     var keynum = pressedKey(e); // To check if the backspace key is pressed  
-    let keyword = getKeyWord(type);
+    let keyword = getKeyWord(type).toLowerCase();
     let response = await fetch(BASE_URL + "/tasks.json");
     let responseJson = await response.json();
-
-    const matchedTasks = responseJson.filter((task) => (task.title.toLowerCase().includes(keyword) ||
-        task.description.toLowerCase().includes(keyword)));
-
-    showSearchResults(matchedTasks, responseJson, keynum);
+    const pattern = new RegExp(`\\b${keyword}\\b`, 'i');
+    const matchedTasks = responseJson.filter((task) => (
+        pattern.test(task.title.toLowerCase()) ||
+        pattern.test(task.description.toLowerCase())
+    ));
+    showSearchResults(matchedTasks, responseJson, keynum, keyword);
 }
+
 
 /**
  * This function checks which button has been pressed and returns the key code.
@@ -91,15 +93,16 @@ function getKeyWord(type) {
  * @param {object} responseJson 
  * @param {number} keynum 
  */
-function showSearchResults(matchedTasks, responseJson, keynum) {
+function showSearchResults(matchedTasks, responseJson, keynum, keyword) {
     if (matchedTasks.length > 0 && keynum != 8) {
         clearLists();
         renderTasks(matchedTasks);
     } else {
         clearLists();
         renderTasks(responseJson);
-        if (keyword != "" && keynum != 8)
+        if (matchedTasks.length === 0 && keyword !== "" && keynum !== 8) {
             noResults();
+        }
     }
 }
 
@@ -338,8 +341,6 @@ function openAddTask() {
     setOverlayStyles(); // Configures styles for the overlay.
     hideUnnecessaryElementsInIframe(); // Hides irrelevant elements in the iframe.
 }
-
-
 
 /**
  * This Function opens the overlay, activates the overlay class, and sets the overlay mode.

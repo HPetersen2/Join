@@ -388,3 +388,46 @@ fetchContacts().then(() => {
     sortContacts();
     displayContacts(contacts);
 });
+
+/**
+ * Function to handle the submission of the contact form.
+ */
+function submitContact() {
+    const nameRef = document.getElementById('addName');
+    const emailRef = document.getElementById('addEmail');
+    const phoneRef = document.getElementById('addPhone');
+
+    nameRef.classList.remove('unvalid-border');
+    emailRef.classList.remove('unvalid-border');
+    phoneRef.classList.remove('unvalid-border');
+    document.getElementById('name-input-msg').classList.remove('show-msg');
+    document.getElementById('email-input-msg').classList.remove('show-msg');
+    document.getElementById('phone-input-msg').classList.remove('show-msg');
+
+    checkValidation(nameRef, emailRef, phoneRef);
+}
+
+/**
+ * This function checks the validity of the input fields and adds error classes if invalid.
+ * @param {string} nameRef - Reference to the name input field.
+ * @param {string} emailRef - Reference to the email input field.
+ * @param {string} phoneRef - Reference to the phone input field.
+ */
+function checkValidation(nameRef, emailRef, phoneRef) {
+    if(!nameRef.checkValidity()) {
+        nameRef.classList.add('unvalid-border');
+        document.getElementById('name-input-msg').classList.add('show-msg');
+    }
+    if(!emailRef.checkValidity()) {
+        emailRef.classList.add('unvalid-border');
+        document.getElementById('email-input-msg').classList.add('show-msg');
+    }
+    if(!phoneRef.checkValidity()) {
+        phoneRef.classList.add('unvalid-border');
+        document.getElementById('phone-input-msg').classList.add('show-msg');
+    }
+
+    if(nameRef.checkValidity() && emailRef.checkValidity() && phoneRef.checkValidity()) {
+        createContact();
+    }
+}

@@ -91,10 +91,23 @@ function renderFiles(container) {
 }
 
 /**
- * This function open the file upload.
+ * This function opens the file upload.
  */
 function openUpload() {
     document.getElementById('file-input').click();
+}
+
+/**
+ * Handle the click event for the container.
+ * 
+ * @param {Event} event The click event.
+ */
+function handleContainerClick(event) {
+    if (event.target.tagName.toLowerCase() === 'img') {
+        return;
+    } else {
+        openUpload();
+    }
 }
 
 /**

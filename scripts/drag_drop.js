@@ -216,6 +216,5 @@ function resetElement(moving) {
         moving.style.position = '';
         moving.style.zIndex = '';
     }
-
     return null;
 }
