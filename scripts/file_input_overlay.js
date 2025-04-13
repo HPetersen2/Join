@@ -77,6 +77,19 @@ async function handleFileChange(inputEl) {
 }
 
 /**
+ * Handle the click event for the container.
+ * 
+ * @param {Event} event The click event.
+ */
+function handleContainerClick(event) {
+    if (event.target.tagName.toLowerCase() === 'img') {
+        return;
+    } else {
+        openUploadOverlay();
+    }
+}
+
+/**
  * Validates a selected file based on type and upload limits.
  * 
  * @param {File} file - The selected file.
@@ -135,7 +148,7 @@ function renderFilePreview(file) {
     const container = document.getElementById('upload-field-overlay');
     container.innerHTML += `
         <div class="file-add-task">
-            <img class="view-upload" src="${file.base64}" alt="${file.fileName}">
+            <img onclick="galleryEdit.show()" class="view-upload" src="${file.base64}" alt="${file.fileName}">
             <p style="font-size: 11px;" class="file-add-task-name">${file.fileShortName}...${file.fileEndName}</p>
         </div>`;
 }

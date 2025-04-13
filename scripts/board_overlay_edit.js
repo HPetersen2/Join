@@ -19,6 +19,11 @@ async function editTask(id, title, description, dueDate, priority) {
     load = true;
     loadContacts(id);
     activeFlatPickr();
+    const galleryEdit = new Viewer(document.getElementById('upload-field-overlay'), {
+        filter(image) {
+          return !image.classList.contains('no-viewer');
+        },
+    });
 }
 
 /**

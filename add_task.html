@@ -21,6 +21,7 @@
     <script src="scripts/base_url.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="./scripts/script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 </head>
 
 <body id="main-page" onload="setUserInitials()">
@@ -103,7 +104,7 @@
                             </div>
                             <p id="description-p" style="margin-bottom: 10px; margin-top: 24px;">Description</p>
                             <div class="textarea">
-                                <input id="description" type="text" placeholder="Enter a Description">
+                                <textarea id="description" type="text" placeholder="Enter a Description"></textarea>
                                 <img src="./assets/icons/description-icon.png" alt="logo">
                             </div>
                             <div class="date-input-container" onclick="handleContainerClick(event)">
@@ -244,7 +245,6 @@
         </div>
     </div>
 </body>
-    <script src="./scripts/file_input.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="scripts/add_task.js"></script>
+    <script src="scripts/add_task.js" defer></script>
+    <script src="./scripts/file_input.js" defer></script>
 </html>

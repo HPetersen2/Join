@@ -30,12 +30,18 @@
     .board-lists {
         flex-direction: column;
         padding: 0 30px 71px 60px;
-        ;
     }
 
     .list {
         width: inherit;
         padding-bottom: 0;
+    }
+
+    .to-do::-webkit-scrollbar,
+    .in-progress::-webkit-scrollbar,
+    .await-feedback::-webkit-scrollbar,
+    .done::-webkit-scrollbar {
+        height: 10px;
     }
 
     .to-do,

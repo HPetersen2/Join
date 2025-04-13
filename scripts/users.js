@@ -25,7 +25,7 @@ const errorMsgSignUp = document.getElementById("check-password");
 const confirmPasswordSignUp = document.querySelector(".password-confirm");
 const inputCheckboxSignUp = document.querySelector(".input-checkbox");
 
-const BASE_URL = 'https://join-376-dd26c-default-rtdb.europe-west1.firebasedatabase.app/';
+const BASE_URL = 'https://join-6bab1-default-rtdb.europe-west1.firebasedatabase.app/';
 
 /**
  * This function loads tasks from Firebase according to their path.

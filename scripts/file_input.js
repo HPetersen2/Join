@@ -200,3 +200,12 @@ function drawImageOnCanvas(context, img, width, height) {
 function getCompressedBase64(canvas, quality) {
     return canvas.toDataURL('image/jpeg', quality);
 }
+
+/**
+ * Load photo-viewer in add task.
+ */
+const galleryAddTask = new Viewer(document.getElementById('upload-field'), {
+    filter(image) {
+      return !image.classList.contains('no-viewer');
+    }
+});

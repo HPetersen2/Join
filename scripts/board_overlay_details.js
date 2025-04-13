@@ -10,6 +10,11 @@ async function showOverlayDetailsTask(id) {
     let tasksArray = Object.values(responseTaskJson);
     tasksArray = tasksArray[id];
     renderOverlay(tasksArray);
+    const galleryDetail = new Viewer(document.getElementById('attachments-overlay'), {
+        filter(image) {
+          return !image.classList.contains('no-viewer');
+        },
+    });
 }
 
 /**
@@ -118,11 +123,6 @@ async function renderOverlayAttachments(responseTaskJson) {
         let base64 = responseTaskJson.allFiles[i].base64;
         document.getElementById('attachments-overlay').innerHTML += getAttachmentsOverlay(id, attachmentId, name, base64);
     }
-    const galleryDetail = new Viewer(document.getElementById('attachments-overlay'), {
-        filter(image) {
-          return !image.classList.contains('no-viewer');
-        }
-    });
 }
 
 /**

@@ -1,5 +1,5 @@
 
-let BASE_URL = 'https://join-376-dd26c-default-rtdb.europe-west1.firebasedatabase.app/';
+let BASE_URL = 'https://join-6bab1-default-rtdb.europe-west1.firebasedatabase.app/';
 let currentDraggedElement;
 let activePriority = '';
 let titles = [];
@@ -99,8 +99,7 @@ function showSearchResults(matchedTasks, responseJson, keynum, keyword) {
         renderTasks(matchedTasks);
     } else {
         clearLists();
-        renderTasks(responseJson);
-        if (matchedTasks.length === 0 && keyword !== "" && keynum !== 8) {
+        if(keyword != '') {
             noResults();
         }
     }
@@ -401,3 +400,12 @@ function resetToMainPage() {
         }
     }
 }
+
+/**
+ * This function checks if the input field is empty and if so, it loads all tasks from Firebase.
+ */
+setInterval(() => {
+    if(document.getElementById('find-task').value == '' && document.activeElement === document.getElementById("find-task")) {
+        loadTasks();
+    }
+}, 100)
