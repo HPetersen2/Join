@@ -271,7 +271,7 @@ function getOverlayEdit(id, title, description, dueDate) {
                 <div id="upload-field-overlay">
                     <p class="upload-placeholder">Upload your attachments</p>
                 </div>
-                <img src="./assets/icons/upload.svg" alt="upload">
+                <img src="./assets/icons/upload.svg" alt="upload" onclick="openUploadOverlay()">
                 <input id="file-input-overlay" type="file" accept="image/*">
             </div>
             <div id="errorUploadOverlay" class="error-upload">
