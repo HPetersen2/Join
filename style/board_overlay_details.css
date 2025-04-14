@@ -245,6 +245,12 @@
     font-weight: 400;
 }
 
+@media (max-height: 750px) {
+    .task-details {
+        max-height: 75vh;
+    }
+}
+
 @media (max-width: 768px) {
     .task-details {
         width: 370px;

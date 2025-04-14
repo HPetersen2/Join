@@ -88,9 +88,12 @@ function renderFiles(container) {
                 <p class="file-add-task-name">${file.fileShortName}...${file.fileEndName}</p>
             </div>`;
     });
+    if (window.galleryAddTask) {
+        window.galleryAddTask.destroy();
+    }
     window.galleryAddTask = new Viewer(document.getElementById('upload-field'), {
         filter(image) {
-          return !image.classList.contains('no-viewer');
+            return !image.classList.contains('no-viewer');
         }
     });
 }

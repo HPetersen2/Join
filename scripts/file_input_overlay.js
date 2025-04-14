@@ -150,11 +150,14 @@ function renderFilePreview(file) {
             <img onclick="galleryEdit.show()" class="view-upload" src="${file.base64}" alt="${file.fileName}">
             <p style="font-size: 11px;" class="file-add-task-name">${file.fileShortName}...${file.fileEndName}</p>
         </div>`;
-        window.galleryEdit = new Viewer(document.getElementById('upload-field-overlay'), {
-            filter(image) {
-              return !image.classList.contains('no-viewer');
-            },
-        });
+    if (window.galleryEdit) {
+        window.galleryEdit.destroy();
+    }
+    window.galleryEdit = new Viewer(document.getElementById('upload-field-overlay'), {
+        filter(image) {
+            return !image.classList.contains('no-viewer');
+        }
+    });
 }
 
 /**

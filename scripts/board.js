@@ -99,9 +99,11 @@ function showSearchResults(matchedTasks, responseJson, keynum, keyword) {
         renderTasks(matchedTasks);
     } else {
         clearLists();
-        if(keyword != '') {
-            noResults();
-        }
+        setTimeout(() => {
+            if(keyword != '') {
+                noResults();
+            }
+        }, 1500);
     }
 }
 

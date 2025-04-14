@@ -131,6 +131,15 @@
     margin-left: 4px !important;
 }
 
+#name-edit-input-msg, #email-edit-input-msg, #phone-edit-input-msg {
+    color: #FF8190 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 120%;
+    margin-top: 4px !important;
+    margin-left: 4px !important;
+}
+
 .disabled-msg {
     display: none;
 }

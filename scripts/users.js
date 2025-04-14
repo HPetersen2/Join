@@ -116,7 +116,7 @@ function checkInputPassword(password) {
 function redirectToSummary(gettedUser, email, password){
     loggedUser = gettedUser;
     sessionStorage.setItem("loggedUser", JSON.stringify(loggedUser));
-    checkRememberMe(); //The user's email will be stored in a storage, if checkbox Remember me is checked 
+    checkRememberMe(); 
     email.value = "";
     password.value = "";
     rememberMe();
@@ -172,19 +172,23 @@ function editEmailToKey(email = "") {
  */
 async function signUpUser() {
     resetConfirmCheckBoxMsgError();
-    if (checkPrivacyPolicy(inputCheckboxSignUp)) {
-        if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
-            setSignedUser (nameSignUp, emailSignUp, passwordSignUp);
-            let users = await loadData("users");// Load users data
-            if (checkFoundUser(emailSignUp, users)) {
-                emailAlreadyLinked(emailSignUp);
-            } else {
-                await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
-                resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
-                showSucessSignedUp();
-            }
-        } else
-            errorPasswords(errorMsgSignUp, passwordSignUp, confirmPasswordSignUp);
+    if(document.getElementById('privacy-checkbox').value && nameSignUp.value != "" && emailSignUp.value != "", passwordSignUp.value != "" && confirmSignUp.value != "") {
+        if (checkPrivacyPolicy(inputCheckboxSignUp)) {
+            if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
+                setSignedUser (nameSignUp, emailSignUp, passwordSignUp);
+                let users = await loadData("users");
+                if (checkFoundUser(emailSignUp, users)) {
+                    emailAlreadyLinked(emailSignUp);
+                } else {
+                    await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
+                    resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
+                    showSucessSignedUp();
+                }
+            } else
+                errorPasswords(errorMsgSignUp, passwordSignUp, confirmPasswordSignUp);
+        }
+    } else {
+        notificationPopUp("Please fill in all fields correctly.");
     }
 }
 
@@ -243,7 +247,6 @@ function setSignedUser (name, email, password) {
  * @param {HTMLElement} password 
  */
 function errorPasswords(errorMsg, password, confirmPassword) {
-    //passwords do not match
     errorMsg.innerHTML = "Your passwords don't match. Please try again.";
     errorMsg.classList.remove('hidden');
     confirmPassword.classList.add('wrong-input');
