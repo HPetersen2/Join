@@ -31,18 +31,26 @@
                     <span id="pop-up-notification">Notification</span>
                 </div>
                 <form novalidate onsubmit="signUpUser(); return false;">
-                    <input type="text" name="Name" placeholder="Name" id="signup-name" required>
-                    <input type="email" name="Email" placeholder="Email" id="signup-email" required>
+                    <div>
+                        <input type="text" name="Name" placeholder="Name" id="signup-name" required>
+                        <span class="disabled-msg" id="name-signup-input-msg">Please enter a valid name.</span>
+                    </div>
+                    <div>
+                        <input type="email" name="Email" placeholder="Email" id="signup-email" required>
+                        <span class="disabled-msg" id="email-signup-input-msg">Please enter a valid email.</span>
+                    </div>
                     <div class="input-password">
                         <input type="password" name="Password" placeholder="Password" class="password-signup" id="signup-password"  required>
                         <img class="password-icon lock-icon">
                     </div>
                     <div class="input-confirm">
-                        <div class="input-icon">
-                            <input type="password" name="Password" placeholder="Confirm Password" class="password-confirm" id="confirm-password"  required>
-                            <img class="confirm-icon lock-icon">
+                        <div>
+                            <div class="input-icon">
+                                <input type="password" name="Password" placeholder="Confirm Password" class="password-confirm" id="confirm-password" required>
+                                <img class="confirm-icon lock-icon">
+                            </div>
+                            <span class="disabled-msg" id="password-signup-input-msg">Your passwords don`t match. Please try again.</span>
                         </div>
-                        <span class="error-message hidden" id="check-password">Your passwords don't match. Please try again.</span>
                     </div>  
                     <div class="input-checkbox">
                         <input type="checkbox" value="false" class="checkbox-privacy" id="privacy-checkbox"> <label for="privacy-checkbox"> I accept the <a href="./privacypolicy_external.html" class="signup-privacy-link">Privacy policy</a></label>

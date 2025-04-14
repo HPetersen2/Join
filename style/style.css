@@ -309,4 +309,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @font-face {
     font-family: fontInter;
     src: url(./../fonts/Inter-VariableFont_opsz\,wght.ttf);
-  }
+}
+
+  .unvalid-border {
+    border: 1px solid #FF8190 !important;
+}
+
+#name-signup-input-msg, #email-signup-input-msg, #password-signup-input-msg {
+    color: #FF8190 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 120%;
+    margin-top: 4px !important;
+    margin-left: 4px !important;
+}
+
+.disabled-msg {
+    display: none;
+}
+
+.show-msg {
+    display: block;
+}

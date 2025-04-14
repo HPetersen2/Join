@@ -171,26 +171,30 @@ function editEmailToKey(email = "") {
  * This function saves the signed up user to firebase
  */
 async function signUpUser() {
-    resetConfirmCheckBoxMsgError();
+    clearMessageBoxes();
     if(document.getElementById('privacy-checkbox').value && nameSignUp.value != "" && emailSignUp.value != "", passwordSignUp.value != "" && confirmSignUp.value != "") {
-        if(!nameSignUp.value.startsWith(" ") && !emailSignUp.startsWith(" ") && !passwordSignUp.value.startsWith(" ") && !confirmSignUp.value.startsWith(" "))
+        if(!nameSignUp.value.startsWith(" ") && !emailSignUp.value.startsWith(" ") && !passwordSignUp.value.startsWith(" ") && !confirmSignUp.value.startsWith(" "))
             if (checkPrivacyPolicy(inputCheckboxSignUp)) {
                 if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
-                    setSignedUser (nameSignUp, emailSignUp, passwordSignUp);
-                    let users = await loadData("users");
-                    if (checkFoundUser(emailSignUp, users)) {
-                        emailAlreadyLinked(emailSignUp);
+                    if(nameSignUp.value != "") {
+                        setSignedUser(nameSignUp, emailSignUp, passwordSignUp);
+                        let users = await loadData("users");
+                        if (checkFoundUser(emailSignUp, users)) {
+                            emailAlreadyLinked(emailSignUp);
+                        } else {
+                            await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
+                            resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
+                            clearMessageBoxes();
+                            showSucessSignedUp();
+                        }
                     } else {
-                        await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
-                        resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
-                        showSucessSignedUp();
+                        document.getElementById('signup-name').classList.add('unvalid-border');
+                        document.getElementById('name-signup-input-msg').classList.add('show-msg');
                     }
+
                 } else
-                    errorPasswords(errorMsgSignUp, passwordSignUp, confirmPasswordSignUp);
-            }
-        else {
-            notificationPopUp("Please do not enter spaces"); 
-        }        
+                    errorPasswords();
+                }      
     } else {
         notificationPopUp("Please fill in all fields correctly.");
     }
@@ -205,15 +209,6 @@ function checkFoundUser(email, users) {
     const userArray = Object.values(users);
     const foundUser = userArray.find(u => u.email === email.value);
     return foundUser != undefined;
-}
-
-/**
- * This function resets the error messages
- */
-function resetConfirmCheckBoxMsgError() {
-    confirmPasswordSignUp.classList.remove('wrong-input');
-    inputCheckboxSignUp.classList.remove('unchecked-privacy');
-    errorMsgSignUp.classList.add('hidden');
 }
 
 /**
@@ -250,11 +245,9 @@ function setSignedUser (name, email, password) {
  * @param {HTMLElement} confirmPassword  
  * @param {HTMLElement} password 
  */
-function errorPasswords(errorMsg, password, confirmPassword) {
-    errorMsg.innerHTML = "Your passwords don't match. Please try again.";
-    errorMsg.classList.remove('hidden');
-    confirmPassword.classList.add('wrong-input');
-    password.focus();
+function errorPasswords() {
+    document.getElementById('confirm-password').classList.add('unvalid-border');
+    document.getElementById('password-signup-input-msg').classList.add('show-msg');
 }
 
 /**
@@ -347,13 +340,20 @@ function checkRememberMe() {
  */
 function validateEmailInput(event) {
     const emailInput = event.target;
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
-    if (emailRegex.test(emailInput.value)) {
-        emailInput.classList.remove('wrong-input');
-    } else {
-        emailInput.classList.add('wrong-input');
-        notificationPopUp("Please enter a valid email address");
-        emailInput.focus();
+    if (!emailRegex.test(emailInput.value)) {
+        document.getElementById('signup-email').classList.add('unvalid-border');
+        document.getElementById('email-signup-input-msg').classList.add('show-msg');
     }
+}
+
+/**
+ * This function cleared the message under input boxes.
+ */
+function clearMessageBoxes() {
+    document.getElementById('signup-email').classList.remove('unvalid-border');
+    document.getElementById('email-signup-input-msg').classList.add('disabled-msg');
+    document.getElementById('confirm-password').classList.remove('unvalid-border');
+    document.getElementById('password-signup-input-msg').classList.add('disabled-msg');
 }
