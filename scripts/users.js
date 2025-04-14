@@ -173,7 +173,7 @@ function editEmailToKey(email = "") {
 async function signUpUser() {
     resetConfirmCheckBoxMsgError();
     if(document.getElementById('privacy-checkbox').value && nameSignUp.value != "" && emailSignUp.value != "", passwordSignUp.value != "" && confirmSignUp.value != "") {
-        if(!nameSignUp.value.includes(" ") && !emailSignUp.includes(" ") && !passwordSignUp.value.includes(" ") && !confirmSignUp.value.includes(" "))
+        if(!nameSignUp.value.startsWith(" ") && !emailSignUp.startsWith(" ") && !passwordSignUp.value.startsWith(" ") && !confirmSignUp.value.startsWith(" "))
             if (checkPrivacyPolicy(inputCheckboxSignUp)) {
                 if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
                     setSignedUser (nameSignUp, emailSignUp, passwordSignUp);

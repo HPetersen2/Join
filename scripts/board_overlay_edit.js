@@ -418,7 +418,7 @@ async function createSubtaskOverlay(id) {
         task.subtasks = [];
     }
     let idSubtask = task.subtasks.length;
-    if (!inputRef.value.includes(" ")) {
+    if (!inputRef.value.startsWith(" ")) {
         let newSubtask = {
             status: "not done",
             title: inputRef.value
@@ -519,7 +519,7 @@ async function saveEditSubtask(id, subtask) {
     let task = await loadTaskWithID(id);
     let subtaskId = findSubtask(task, subtask);
     let inputTitle = document.getElementById('change-subtask-input').value;
-    if (!inputTitle.includes(" ")) {
+    if (!inputTitle.startsWith(" ")) {
         let newSubtask = {
             status: "not done",
             title: inputTitle

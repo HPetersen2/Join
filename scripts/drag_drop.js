@@ -175,13 +175,13 @@ function drop(event) {
 function setTargetList(target) {
     if (target.at('div.list') != undefined)
         if (target.at('div.list').childNodes[3] != undefined) {
-            if (listNames.includes(target.at('div.list').childNodes[3].id)) {
+            if (listNames.startsWith(target.at('div.list').childNodes[3].id)) {
                 return target.at('div.list').childNodes[3];
             }
         }
     for (let index = 0; index < target.length; index++) {
         const element = target[index];
-        if (listNames.includes(element.id))
+        if (listNames.startsWith(element.id))
             return element;
     }
 }
