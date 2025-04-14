@@ -279,15 +279,6 @@ function confirmSubtask() {
     let subtaskList = document.getElementById('subtask-list');
     let subtaskCount = subtaskList.getElementsByTagName('li').length;
     let subtaskMessage = document.getElementById('subtask-limit-message');
-    if (subtaskCount >= 3) {
-        subtaskMessage.classList.add('blink');
-        subtaskMessage.style.display = "block";
-        setTimeout(() => {
-            subtaskMessage.classList.remove('blink');
-            subtaskMessage.style.display = "none";
-        }, 2000);
-        return;
-    }
     subtaskMessage.style.display = "none";
     let subtaskValue = document.getElementById('addsubtasks').value.trim();
     if (subtaskValue !== "") {

@@ -534,8 +534,7 @@ textarea {
 #subtask-list {
     cursor: pointer !important;
     max-height: 90px !important;
-    overflow-y: hidden !important;
-    overflow: hidden !important;
+    overflow-y: auto;
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
