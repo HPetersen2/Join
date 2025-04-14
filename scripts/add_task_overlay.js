@@ -12,7 +12,6 @@ function monitorMediaQuery() {
  */
   function handleMediaChange(e) {
       if (e.matches && isOverlayModeActive()) {
-          console.log("Screen width > 1150px and overlay is active. Redirecting to the main page.");
           window.location.href = 'main.html';
       }
   }

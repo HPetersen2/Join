@@ -66,10 +66,10 @@ async function loadUser() {
                 if (matchingPassword(gettedUser.password, passwordLogin.value)) {
                     redirectToSummary(gettedUser, emailLogin, passwordLogin);
                 } else {                    
-                    showErrorMsg(errorMsgLogin, passwordLogin, emailLogin); //because passwords do not match
+                    showErrorMsg(errorMsgLogin, passwordLogin, emailLogin);
                 }
             } else {                
-                showErrorMsg(errorMsgLogin, passwordLogin, emailLogin);//beacuse user does not exist
+                showErrorMsg(errorMsgLogin, passwordLogin, emailLogin);
             }
         }
     }
@@ -173,20 +173,24 @@ function editEmailToKey(email = "") {
 async function signUpUser() {
     resetConfirmCheckBoxMsgError();
     if(document.getElementById('privacy-checkbox').value && nameSignUp.value != "" && emailSignUp.value != "", passwordSignUp.value != "" && confirmSignUp.value != "") {
-        if (checkPrivacyPolicy(inputCheckboxSignUp)) {
-            if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
-                setSignedUser (nameSignUp, emailSignUp, passwordSignUp);
-                let users = await loadData("users");
-                if (checkFoundUser(emailSignUp, users)) {
-                    emailAlreadyLinked(emailSignUp);
-                } else {
-                    await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
-                    resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
-                    showSucessSignedUp();
-                }
-            } else
-                errorPasswords(errorMsgSignUp, passwordSignUp, confirmPasswordSignUp);
-        }
+        if(!nameSignUp.value.includes(" ") && !emailSignUp.includes(" ") && !passwordSignUp.value.includes(" ") && !confirmSignUp.value.includes(" "))
+            if (checkPrivacyPolicy(inputCheckboxSignUp)) {
+                if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
+                    setSignedUser (nameSignUp, emailSignUp, passwordSignUp);
+                    let users = await loadData("users");
+                    if (checkFoundUser(emailSignUp, users)) {
+                        emailAlreadyLinked(emailSignUp);
+                    } else {
+                        await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
+                        resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
+                        showSucessSignedUp();
+                    }
+                } else
+                    errorPasswords(errorMsgSignUp, passwordSignUp, confirmPasswordSignUp);
+            }
+        else {
+            notificationPopUp("Please do not enter spaces"); 
+        }        
     } else {
         notificationPopUp("Please fill in all fields correctly.");
     }
@@ -310,7 +314,7 @@ function notificationPopUp(msg = "") {
     notificationMessage.style.display = 'flex';
     setTimeout(() => {
         notificationMessage.style.display = 'none';
-    }, 1500); // Duration as needed
+    }, 1500);
 }
 
 /**

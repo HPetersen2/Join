@@ -42,13 +42,13 @@ function scrollToPoint(e, touch) {
     const elementsBottom = getElementsFromPoint(e);
     if (elementsBottom.length > 0) {
         const rect = boardLists.getBoundingClientRect();
-        const scrollThreshold = 30; // Distance from edges to trigger scroll
-        const scrollSpeed = 10; // Adjust scroll speed as needed
-        if (touch.clientY - rect.top < scrollThreshold) { // Scroll upwards if near the top of the board-lists
+        const scrollThreshold = 30;
+        const scrollSpeed = 10;
+        if (touch.clientY - rect.top < scrollThreshold) {
             boardLists.scrollTop -= scrollSpeed;
             mainContent.scrollTop = boardLists.scrollTop - 10;
         }
-        if (touch.clientY + rect.top > rect.height - scrollThreshold) { // Scroll downwards if near the bottom of the board-lists
+        if (touch.clientY + rect.top > rect.height - scrollThreshold) {
             boardLists.scrollTop += scrollSpeed;
             mainContent.scrollTop = boardLists.scrollTop;
         }
@@ -113,7 +113,6 @@ function pickup(event) {
 function setPickUpPosition(e, moving) {
     const touch = e.touches[0];
     if (touch) {
-         // assuming a single touchpoint
         moving.style.left = touch.pageX + 'px';
         moving.style.top = touch.pageY + 'px';
     } else {

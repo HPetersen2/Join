@@ -47,17 +47,15 @@ function saveInArray(tasksJson) {
  */
 async function searchTask(type, e) {
     var keynum = pressedKey(e); // To check if the backspace key is pressed  
-    let keyword = getKeyWord(type).toLowerCase();
+    let keyword = getKeyWord(type);
     let response = await fetch(BASE_URL + "/tasks.json");
     let responseJson = await response.json();
-    const pattern = new RegExp(`\\b${keyword}\\b`, 'i');
-    const matchedTasks = responseJson.filter((task) => (
-        pattern.test(task.title.toLowerCase()) ||
-        pattern.test(task.description.toLowerCase())
-    ));
-    showSearchResults(matchedTasks, responseJson, keynum, keyword);
-}
 
+    const matchedTasks = responseJson.filter((task) => (task.title.toLowerCase().includes(keyword) ||
+        task.description.toLowerCase().includes(keyword)));
+
+    showSearchResults(matchedTasks, responseJson, keynum);
+}
 
 /**
  * This function checks which button has been pressed and returns the key code.
@@ -93,17 +91,15 @@ function getKeyWord(type) {
  * @param {object} responseJson 
  * @param {number} keynum 
  */
-function showSearchResults(matchedTasks, responseJson, keynum, keyword) {
+function showSearchResults(matchedTasks, responseJson, keynum) {
     if (matchedTasks.length > 0 && keynum != 8) {
         clearLists();
         renderTasks(matchedTasks);
     } else {
         clearLists();
-        setTimeout(() => {
-            if(keyword != '') {
-                noResults();
-            }
-        }, 1500);
+        renderTasks(responseJson);
+        if (keyword != "" && keynum != 8)
+            noResults();
     }
 }
 
@@ -338,9 +334,9 @@ async function deleteTask(id) {
  * @returns {void}
  */
 function openAddTask() {
-    showOverlay(); // Displays the overlay.
-    setOverlayStyles(); // Configures styles for the overlay.
-    hideUnnecessaryElementsInIframe(); // Hides irrelevant elements in the iframe.
+    showOverlay();
+    setOverlayStyles();
+    hideUnnecessaryElementsInIframe();
 }
 
 /**
@@ -349,8 +345,8 @@ function openAddTask() {
 function openOverlay() {
     const overlay = document.getElementById('overlayContent');
     if (overlay) {
-        overlay.classList.add('overlay-active'); // Adds the active class to the overlay
-        setOverlayMode(); // Sets the overlay mode
+        overlay.classList.add('overlay-active');
+        setOverlayMode();
     }
 }
 
@@ -377,11 +373,10 @@ function setOverlayMode() {
                 if (iframeDocument) {
                     const body = iframeDocument.body;
                     if (body) {
-                        console.log("Changing body ID to 'overlay-mode'");
                         body.id = "overlay-mode";
                     }
                 }
-            }, 100); // Delay to ensure iframe content has loaded
+            }, 100);
         };
     }
 }
@@ -396,7 +391,6 @@ function resetToMainPage() {
         if (iframeDocument) {
             const body = iframeDocument.body;
             if (body) {
-                console.log("Resetting body ID to 'main-page'");
                 body.id = 'main-page';
             }
         }

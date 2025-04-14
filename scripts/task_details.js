@@ -209,18 +209,15 @@ function createNameSpan(contact) {
  */
 function filterContacts() {
     let input = document.getElementById('dropdown-input').value.toLowerCase().trim();
-    console.log("Eingegebener Text:", input);
     if (input.length === 0) {
         displayContacts(allContacts);
         return;
     }
     let initial = input[0];
-    console.log("Erster Buchstabe der Eingabe:", initial);
     let filteredContacts = allContacts.filter(contact => {
         let contactName = contact.name || `${contact.firstName || ''} ${contact.lastName || ''}`.trim();
         return contactName.toLowerCase().startsWith(initial);
     });
-    console.log("Gefilterte Kontakte:", filteredContacts);
     if (filteredContacts.length === 0) {
         displayNoResults();
     } else {
@@ -452,10 +449,8 @@ function getEnteredDate(value) {
 function handleTaskCreation() {
     createTask(() => {
         if (document.body.id === "overlay-mode") {
-            console.log("Overlay mode detected. Closing overlay.");
             closeOverlay(); 
         } else {
-            console.log("Main page detected. Redirecting to board.");
             window.location.href = "board.html"; 
         }
     });

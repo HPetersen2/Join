@@ -167,12 +167,9 @@ async function saveTask(newTask) {
             setTimeout(() => {
                 successOverlay.style.display = 'none';
                 if (document.body.id === "overlay-mode") {
-                    console.log("Overlay mode detected. Clearing inputs and closing overlay.");
-                    // Inputs zurücksetzen und Overlay schließen
                     clearInputsAndCloseOverlay();
                 } else {
-                    console.log("Main page detected. Redirecting to board.");
-                    window.location.href = 'board.html'; // Weiterleitung zur Board-Seite
+                    window.location.href = 'board.html';
                 }
             }, 3000);
         } else {
@@ -343,39 +340,67 @@ function resetSubtaskInputs() {
 }
 
 /**
+ * Enables editing mode for a subtask.
+ * @param {HTMLElement} subtaskText - The subtask text element.
+ */
+function enableEditing(subtaskText) {
+    subtaskText.contentEditable = "true";
+    subtaskText.focus();
+}
+
+/**
+ * Limits subtask text length to 36 characters.
+ * @param {HTMLElement} subtaskText - The subtask text element.
+ */
+function limitSubtaskLength(subtaskText) {
+    subtaskText.addEventListener('input', () => {
+        if (subtaskText.textContent.length > 36)
+            subtaskText.textContent = subtaskText.textContent.slice(0, 36);
+    });
+}
+
+/**
+ * Handles Enter key to finish editing.
+ * @param {HTMLElement} subtaskText - The subtask text element.
+ */
+function handleEnterKey(subtaskText) {
+    subtaskText.addEventListener('keydown', e => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            subtaskText.blur();
+        }
+    });
+}
+
+/**
+ * Updates the subtask title or reverts if empty.
+ * @param {HTMLElement} subtaskText - The subtask text element.
+ * @param {string} originalText - The original subtask text.
+ */
+function handleBlur(subtaskText, originalText) {
+    subtaskText.addEventListener('blur', () => {
+        const newText = subtaskText.textContent.trim();
+        if (!newText) {
+            subtaskText.textContent = originalText;
+        } else {
+            const i = subtasksArray.findIndex(s => s.title === originalText);
+            if (i !== -1) subtasksArray[i].title = newText;
+        }
+        subtaskText.contentEditable = "false";
+    });
+}
+
+/**
  * Edits an existing subtask.
  * @param {HTMLElement} editBtn - The button element used to trigger the edit.
  */
 function editSubtask(editBtn) {
-    let subtaskText = editBtn.parentElement.previousElementSibling.querySelector('.subtask-text');
-    subtaskText.contentEditable = "true";
-    subtaskText.focus();
-    let originalText = subtaskText.textContent;
-    subtaskText.addEventListener('input', function () {
-        if (subtaskText.textContent.length > 36) {
-            subtaskText.textContent = subtaskText.textContent.slice(0, 36);
-        }
-    });
-    subtaskText.addEventListener('keydown', function (event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            subtaskText.blur();
-        }
-    });
-
-    /**This Function is for the updated subtask,if the subtask dont get entered,the value of the old subtask get filled in */
-    subtaskText.addEventListener('blur', function () {
-        let newText = subtaskText.textContent.trim();
-        if (newText === "") {
-            subtaskText.textContent = originalText;
-        } else {
-            let subtaskIndex = subtasksArray.findIndex(subtask => subtask.title === originalText);
-            if (subtaskIndex !== -1) {
-                subtasksArray[subtaskIndex].title = newText;
-            }
-        }
-        subtaskText.contentEditable = "false";
-    });
+    const subtaskText = editBtn.parentElement.previousElementSibling.querySelector('.subtask-text');
+    const originalText = subtaskText.textContent;
+    enableEditing(subtaskText);
+    limitSubtaskLength(subtaskText);
+    handleEnterKey(subtaskText);
+    handleBlur(subtaskText, originalText);
 }
 
 /**

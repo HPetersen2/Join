@@ -98,13 +98,11 @@ function updateContactDetails(contact, initials, bgColor) {
     const detailsInitials = document.getElementById('detailsInitials');
     detailsInitials.textContent = initials;
     detailsInitials.style.backgroundColor = bgColor;
-    
     document.getElementById('contactId').innerHTML = contact.id;
     document.getElementById('detailsName').textContent = contact.name;
     document.getElementById('detailsEmail').innerHTML = contact.email 
         ? `<a style="color: #007cee;" href="mailto:${contact.email}">${contact.email}</a>` 
         : 'No email available';
-    
     document.getElementById('detailsPhone').textContent = contact.phone ? contact.phone : 'No phone available';
 }
 
@@ -167,10 +165,8 @@ function getNewContactId() {
  */
 async function deleteContact(del) {
     let id = + document.getElementById('contactId').innerHTML;
-    
     let updatedContacts = removeContactById(contacts, id);
     updatedContacts = updateID(updatedContacts);
-
     let responseContact = await fetch(BASE_URL + 'contacts.json', {
         method: "PUT",
         headers: {
@@ -179,7 +175,6 @@ async function deleteContact(del) {
         body: JSON.stringify(updatedContacts)
     });
     contacts = updatedContacts;
-
     updateDelChanges(del);
 }
 
@@ -252,7 +247,6 @@ function updateEditContactForm(contact, initials, bgColor) {
     document.getElementById('editName').value = contact.name;
     document.getElementById('editEmail').value = contact.email || '';
     document.getElementById('editPhone').value = contact.phone || '';
-    
     const editInitialsCircle = document.getElementById('editDetailsInitials');
     editInitialsCircle.textContent = initials;
     editInitialsCircle.style.backgroundColor = bgColor;
@@ -264,7 +258,6 @@ function updateEditContactForm(contact, initials, bgColor) {
 function closeEditContactForm() {
     const editContactForm = document.getElementById('editContactForm');
     editContactForm.style.opacity = '0';
-
     setTimeout(() => {
         editContactForm.classList.remove('visible');
         editContactForm.style.display = 'none'; 
@@ -344,10 +337,8 @@ function toggleDetails() {
         const detailsContainer = document.querySelector('.detailsContainer');
         const contactsContainer = document.querySelector('.contactsSection');
         const backArrow = document.querySelector('.backArrow');
-
         detailsContainer.classList.toggle('show-details');
         contactsContainer.classList.toggle('hide-contacts');
-
         if (detailsContainer.classList.contains('show-details')) {
             backArrow.classList.add('show-details');
         } else {
@@ -361,7 +352,6 @@ function toggleDetails() {
  */
 function toggleContactDetails() {
     const detailsButtons = document.querySelector('.responsiveContactDetailsButtons');
-    
     if (detailsButtons.classList.contains('hide-contacts')) {
         detailsButtons.classList.remove('hide-contacts');
         detailsButtons.classList.add('show-details');
@@ -378,10 +368,8 @@ function hideDetails() {
     const detailsContainer = document.querySelector('.detailsContainer');
     const contactsContainer = document.querySelector('.contactsSection');
     const backArrow = document.querySelector('.backArrow');
-
     detailsContainer.classList.remove('show-details');
     contactsContainer.classList.remove('hide-contacts');
-
     backArrow.classList.add('show-details');
 }
 
@@ -426,7 +414,6 @@ function closeContactDetails(){
     detailsSection.classList.remove('active');
 }
 
-
 /**
  * Fetches and displays the contacts when the page is loaded.
  */
@@ -434,89 +421,3 @@ fetchContacts().then(() => {
     sortContacts();
     displayContacts(contacts);
 });
-
-/**
- * Function to handle the submission of the contact form.
- */
-function submitContact() {
-    const nameRef = document.getElementById('addName');
-    const emailRef = document.getElementById('addEmail');
-    const phoneRef = document.getElementById('addPhone');
-
-    nameRef.classList.remove('unvalid-border');
-    emailRef.classList.remove('unvalid-border');
-    phoneRef.classList.remove('unvalid-border');
-    document.getElementById('name-input-msg').classList.remove('show-msg');
-    document.getElementById('email-input-msg').classList.remove('show-msg');
-    document.getElementById('phone-input-msg').classList.remove('show-msg');
-
-    checkValidation(nameRef, emailRef, phoneRef);
-}
-
-/**
- * This function checks the validity of the input fields and adds error classes if invalid.
- * @param {string} nameRef - Reference to the name input field.
- * @param {string} emailRef - Reference to the email input field.
- * @param {string} phoneRef - Reference to the phone input field.
- */
-function checkValidation(nameRef, emailRef, phoneRef) {
-    if(!nameRef.checkValidity()) {
-        nameRef.classList.add('unvalid-border');
-        document.getElementById('name-input-msg').classList.add('show-msg');
-    }
-    if(!emailRef.checkValidity()) {
-        emailRef.classList.add('unvalid-border');
-        document.getElementById('email-input-msg').classList.add('show-msg');
-    }
-    if(!phoneRef.checkValidity()) {
-        phoneRef.classList.add('unvalid-border');
-        document.getElementById('phone-input-msg').classList.add('show-msg');
-    }
-
-    if(nameRef.checkValidity() && emailRef.checkValidity() && phoneRef.checkValidity()) {
-        createContact();
-    }
-}
-
-/**
- * This function checks the validity of the input fields and adds error classes if invalid.
- * @param {string} nameRef - Reference to the name input field.
- * @param {string} emailRef - Reference to the email input field.
- * @param {string} phoneRef - Reference to the phone input field.
- */
-function checkValidationEdit(editName, editEmail, editPhone) {
-    if(!editName.checkValidity()) {
-        editName.classList.add('unvalid-border');
-        document.getElementById('name-edit-input-msg').classList.add('show-msg');
-    }
-    if(!editEmail.checkValidity()) {
-        editEmail.classList.add('unvalid-border');
-        document.getElementById('email-edit-input-msg').classList.add('show-msg');
-    }
-    if(!editPhone.checkValidity()) {
-        editPhone.classList.add('unvalid-border');
-        document.getElementById('phone-edit-input-msg').classList.add('show-msg');
-    }
-
-    if(editName.checkValidity() && editEmail.checkValidity() && editPhone.checkValidity()) {
-        saveEditChanges();
-    }
-}
-
-/**
- * Function to handle the submission of the contact form.
- */
-function submitEditContact() {
-    const nameRef = document.getElementById('editName');
-    const emailRef = document.getElementById('editEmail');
-    const phoneRef = document.getElementById('editPhone');
-
-    nameRef.classList.remove('unvalid-border');
-    emailRef.classList.remove('unvalid-border');
-    phoneRef.classList.remove('unvalid-border');
-    document.getElementById('name-edit-input-msg').classList.remove('show-msg');
-    document.getElementById('email-edit-input-msg').classList.remove('show-msg');
-    document.getElementById('phone-edit-input-msg').classList.remove('show-msg');
-
-    checkValidationEdit(nameRef, emailRef, phoneRef);
-}
