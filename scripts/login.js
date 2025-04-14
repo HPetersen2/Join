@@ -4,26 +4,34 @@ const inputPassword = document.querySelector(".password-login");
 const checkBox = document.querySelector(".checkbox-login");
 const errorMsg = document.querySelector(".error-message");
 
-inputEmail.addEventListener('keyup', function(){
-    if(inputEmail.value === "") {
+/**
+ * Handles keyup event on the email input field.
+ * Removes error styling if the input is empty and hides error message if both fields are empty.
+ */
+inputEmail.addEventListener('keyup', function() {
+    if (inputEmail.value === "") {
         inputEmail.classList.remove('wrong-input');
-        if(inputPassword.value === "") {
+        if (inputPassword.value === "") {
             errorMsg.classList.add('hidden');
         }
     }
 });
 
-inputPassword.addEventListener('keyup', function(){
-    if(inputPassword.value !== "") {
+/**
+ * Handles keyup event on the password input field.
+ * Updates the icon depending on whether the password field has input, and hides error message if both fields are empty.
+ */
+inputPassword.addEventListener('keyup', function() {
+    if (inputPassword.value !== "") {
         passwordIcon.classList.remove('lock-icon');
         passwordIcon.classList.add('eye-slash-icon');
-    }else {
-        inputPassword.setAttribute('type','password');
+    } else {
+        inputPassword.setAttribute('type', 'password');
         inputPassword.classList.remove('wrong-input');
         passwordIcon.classList.remove('eye-slash-icon');
         passwordIcon.classList.remove('eye-icon');
         passwordIcon.classList.add('lock-icon');
-        if(inputEmail.value === "") {
+        if (inputEmail.value === "") {
             errorMsg.classList.add('hidden');
         }
     }
@@ -31,31 +39,35 @@ inputPassword.addEventListener('keyup', function(){
 
 var password = true;
 
-passwordIcon.addEventListener('click', function(){
+/**
+ * Toggles the visibility of the password by switching the input type and updating the icon.
+ */
+passwordIcon.addEventListener('click', function() {
     if (inputPassword.value !== "") {
-        if(password) {
-            // change the input type attribute from "password" to "text"
-            inputPassword.setAttribute('type','text'); 
+        if (password) {
+            inputPassword.setAttribute('type', 'text');
             passwordIcon.classList.remove('eye-icon');
             passwordIcon.classList.add('eye-slash-icon');
             inputPassword.focus();
         } else {
-            // change the input type attribute from "text" to "password"
-            inputPassword.setAttribute('type','password');
+            inputPassword.setAttribute('type', 'password');
             passwordIcon.classList.remove('eye-slash-icon');
             passwordIcon.classList.add('eye-icon');
             inputPassword.focus();
         }
-        password = !password;   
+        password = !password;
     } else {
         inputPassword.focus();
-    }   
+    }
 });
 
-checkBox.addEventListener('change', function(){
-    if (checkBox.checked){
+/**
+ * Updates the value of the checkbox input based on its checked state.
+ */
+checkBox.addEventListener('change', function() {
+    if (checkBox.checked) {
         checkBox.value = true;
-    }else{
+    } else {
         checkBox.value = false;
     }
 });

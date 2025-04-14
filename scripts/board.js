@@ -376,7 +376,7 @@ function setOverlayMode() {
                     const body = iframeDocument.body;
                     if (body) {
                         console.log("Changing body ID to 'overlay-mode'");
-                        body.id = "overlay-mode"; // Sets the ID to indicate overlay mode
+                        body.id = "overlay-mode";
                     }
                 }
             }, 100); // Delay to ensure iframe content has loaded
@@ -395,7 +395,7 @@ function resetToMainPage() {
             const body = iframeDocument.body;
             if (body) {
                 console.log("Resetting body ID to 'main-page'");
-                body.id = 'main-page'; // Resets the ID to indicate the main page mode
+                body.id = 'main-page';
             }
         }
     }

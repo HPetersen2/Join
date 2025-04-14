@@ -48,7 +48,6 @@ function createCheckbox(contact) {
  */
 function synchronizeCheckboxes() {
     let checkboxes = document.querySelectorAll('#dropdown-user input[type="checkbox"]');
-
     checkboxes.forEach(checkbox => {
         let userContainer = checkbox.closest('.user-container');
         let contact = allContacts.find(contact => {
@@ -229,7 +228,9 @@ function filterContacts() {
     }
 }
 
-
+/**
+ * Displays a "No results found" message in the dropdown when no matching results are available.
+ */
 function displayNoResults() {
     let dropdown = document.getElementById('dropdown-user');
     dropdown.innerHTML = '';
@@ -240,28 +241,32 @@ function displayNoResults() {
     dropdown.appendChild(noResultsMessage);
 }
 
-function displayNoResults() {
-    let dropdown = document.getElementById('dropdown-user');
-    dropdown.innerHTML = '';
-
-    let noResultsMessage = document.createElement('div');
-    noResultsMessage.classList.add('no-results');
-    noResultsMessage.textContent = '"No results found"';
-    dropdown.appendChild(noResultsMessage);
-}
-
+/**
+ * Fills the input field for the due date with the current date.
+ */
 function fillCurrentDate() {
     let dateInput = document.getElementById('due-date-input');
     dateInput.focus();
     dateInput.click();
 }
 
+/**
+ * Initializes the flatpickr date picker on the due date input field when the DOM is fully loaded.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     flatpickr("#due-date-input", { dateFormat: "d/m/Y" });
 });
+
+/**
+ * Opens the flatpickr date picker when the date image is clicked.
+ */
 document.getElementById('dateimg').addEventListener('click', function () {
     document.getElementById('due-date-input')._flatpickr.open();
 });
+
+/**
+ * Initializes the flatpickr instance with specific options and stores the instance in a global variable when the DOM is fully loaded.
+ */
 document.addEventListener('DOMContentLoaded', function () {
     window.flatpickrInstance = flatpickr("#due-date-input", {
         dateFormat: "d/m/Y",
@@ -270,11 +275,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
+/**
+ * Opens the flatpickr date picker programmatically if the instance exists.
+ */
 function openFlatpickr() {
     if (window.flatpickrInstance) {
         window.flatpickrInstance.open();
     }
 }
+
+/**
+ * Initializes the flatpickr date picker with options to show an alternative input format, disable mobile input, and set the minimum date to today.
+ */
 flatpickr("#due-date-input", {
     dateFormat: "d/m/Y",
     minDate: "today",
@@ -283,6 +295,11 @@ flatpickr("#due-date-input", {
     disableMobile: "true",
 });
 
+/**
+ * Returns the current date formatted as "YYYY-MM-DD".
+ * 
+ * @returns {string} The formatted date string of today's date.
+ */
 function getFormattedTodayDate() {
     const today = new Date();
     const year = today.getFullYear();
@@ -290,6 +307,7 @@ function getFormattedTodayDate() {
     const day = String(today.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
 }
+
 /**
  * Validates the date input and ensures it is in the correct format and not in the past.
  */
@@ -314,7 +332,6 @@ function validateDateInput() {
 
 document.getElementById('due-date-input').addEventListener('input', validateDateInput);
 
-
 /**
  * Validates the date format and ensures it is not in the past.
  * @param {string} dateValue - The date value to validate.
@@ -332,21 +349,14 @@ function validateDateFormatAndFuture(dateValue) {
     const enteredDate = new Date(`${year}-${month}-${day}`);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
     if (enteredDate < today) {
         return {
             isValid: true,
             correctedDate: getFormattedTodayDate()
         };
     }
-
     return { isValid: true };
 }
-
-/**
- * Returns the current date formatted as `DD/MM/YYYY`.
- * @returns {string} The formatted date string.
- */
 
 /**
  * Initializes the date input to ensure proper formatting.
@@ -450,5 +460,3 @@ function handleTaskCreation() {
         }
     });
 }
-
-

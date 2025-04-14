@@ -1,12 +1,14 @@
 let moving = null;
-
 let listNames = ['to-do', 'in-progress', 'await-feedback', 'done'];
-
 let timer = null;
-
 const mainContent = document.querySelector('.main-content');
 const boardLists = document.getElementById('board-lists');
 
+/**
+ * Handles mouse movement and updates the position of the moving element accordingly.
+ * 
+ * @param {MouseEvent} e - The mousemove event object.
+ */
 document.addEventListener('mousemove', function (e) {
     if (moving) {
         moving.style.left = e.pageX + 'px';
@@ -14,6 +16,12 @@ document.addEventListener('mousemove', function (e) {
     }
 });
 
+/**
+ * Handles touch movement on mobile devices and updates the position of the moving element.
+ * Also calls a scroll helper function if needed.
+ * 
+ * @param {TouchEvent} e - The touchmove event object.
+ */
 document.addEventListener('touchmove', function (e) {
     if (moving) {
         e.preventDefault();
@@ -82,15 +90,15 @@ function longPressed(event, id) {
 function pickup(event) {
     if (!event.target.classList.contains('task-card')) {
         for (moving = event.target.parentElement; !moving.classList.contains('task-card'); 
-            moving = moving.parentElement);// Loop through parent elements
+            moving = moving.parentElement);
     } else {
         moving = event.target;
     }
 
-    moving.dataset.originalHeight = moving.clientHeight + "px"; // Save the original width and height as custom properties on the element
+    moving.dataset.originalHeight = moving.clientHeight + "px";
     moving.dataset.originalWidth = moving.clientWidth + "px";
 
-    moving.style.height = moving.clientHeight + "px"; // Set the width and height to fixed values based on the element's current size
+    moving.style.height = moving.clientHeight + "px";
     moving.style.width = moving.clientWidth + "px";
     moving.style.position = 'fixed';
     moving.style.zIndex = '10';
@@ -124,11 +132,9 @@ function move(event) {
     if (moving) {
         event.stopImmediatePropagation();
         if (event.clientX) {
-            // mousemove
             moving.style.left = event.clientX 
             moving.style.top = event.clientY
         } else {
-            // touchmove - assuming a single touchpoint
             moving.style.left = event.changedTouches[0].clientX 
             moving.style.top = event.changedTouches[0].clientY 
         }
@@ -155,13 +161,9 @@ function drop(event) {
     if (moving) {
         if (event.currentTarget.classList.contains('list')) {
             let target = getElementsFromPoint(event);
-
             let targetList = setTargetList(target);
-
             checkTargetList(targetList, moving);
         }
-
-        // reset our element
         removeDragging(moving.id);
         moving = resetElement(moving);
     }
@@ -178,13 +180,11 @@ function setTargetList(target) {
                 return target.at('div.list').childNodes[3];
             }
         }
-
     for (let index = 0; index < target.length; index++) {
         const element = target[index];
         if (listNames.includes(element.id))
             return element;
     }
-
 }
 
 /**

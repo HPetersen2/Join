@@ -258,6 +258,9 @@ function updateEditContactForm(contact, initials, bgColor) {
     editInitialsCircle.style.backgroundColor = bgColor;
 }
 
+/**
+ * Closes the edit contact form with a fade-out effect.
+ */
 function closeEditContactForm() {
     const editContactForm = document.getElementById('editContactForm');
     editContactForm.style.opacity = '0';
@@ -268,6 +271,9 @@ function closeEditContactForm() {
     }, 700);
 }
 
+/**
+ * Opens the edit contact form with a fade-in effect.
+ */
 function openEditContactForm() {
     const editContactForm = document.getElementById('editContactForm');
     editContactForm.style.display = 'flex';
@@ -277,6 +283,10 @@ function openEditContactForm() {
     }, 10);
 }
 
+/**
+ * Closes the add contact form and optionally shows a success overlay.
+ * @param {boolean} [contactCreated=false] - Whether the contact was successfully created.
+ */
 function closeAddContactForm(contactCreated = false) {
     const form = document.getElementById('addContactForm');
     const overlay = document.getElementById('successfullycreatedContactOverlay');
@@ -293,6 +303,9 @@ function closeAddContactForm(contactCreated = false) {
     }, 1000);
 }
 
+/**
+ * Opens the add contact form with a fade-in effect.
+ */
 function openAddContactForm() {
     const addContactForm = document.getElementById('addContactForm');
     addContactForm.style.display = 'flex';
@@ -302,13 +315,19 @@ function openAddContactForm() {
     }, 10);
 }
 
+/**
+ * Hides the responsive footer section.
+ */
 function hideFooter() {
     const footer = document.querySelector('.responsive-footer');
     if (footer) {
       footer.classList.add('hide-contacts');
     }
-  }
+}
 
+/**
+ * Shows the responsive footer section with details.
+ */
 function showFooter() {
     const footer = document.querySelector('.responsive-footer');
     if (footer) {
@@ -317,6 +336,9 @@ function showFooter() {
     }
 }
 
+/**
+ * Toggles visibility between contact list and contact details on small screens.
+ */
 function toggleDetails() {
     if (window.innerWidth < 1250) {
         const detailsContainer = document.querySelector('.detailsContainer');
@@ -334,6 +356,9 @@ function toggleDetails() {
     }
 }
 
+/**
+ * Toggles visibility of responsive contact details buttons.
+ */
 function toggleContactDetails() {
     const detailsButtons = document.querySelector('.responsiveContactDetailsButtons');
     
@@ -346,6 +371,9 @@ function toggleContactDetails() {
     }
 }
 
+/**
+ * Hides the contact details section and shows the contact list again.
+ */
 function hideDetails() {
     const detailsContainer = document.querySelector('.detailsContainer');
     const contactsContainer = document.querySelector('.contactsSection');
@@ -357,6 +385,11 @@ function hideDetails() {
     backArrow.classList.add('show-details');
 }
 
+/**
+ * Adds a letter header (e.g., A, B, C) to the given container.
+ * @param {HTMLElement} container - The container element where the header should be added.
+ * @param {string} letter - The letter to be displayed as the header.
+ */
 function addLetterHeader(container, letter) {
     container.innerHTML += `
         <div class="contactHeaderWrapper">
@@ -365,21 +398,34 @@ function addLetterHeader(container, letter) {
     `;
 }
 
+/**
+ * Returns the initials from a given full name.
+ * @param {string} name - Full name of the contact.
+ * @returns {string} Initials of the contact.
+ */
 function getInitials(name) {
     const nameParts = name.split(' ');
     return nameParts[0][0].toUpperCase() + (nameParts[1] ? nameParts[1][0].toUpperCase() : '');
 }
 
+/**
+ * Returns a random color from a predefined list of colors.
+ * @returns {string} A random hex color code.
+ */
 function getRandomColor() {
     const colors = ['#ff7a00', '#9327ff', '#6e52ff', '#fc71ff', '#ffbb2b', '#1fd7c1', '#462f8a', '#ff4646', '#00bee8'];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
+/**
+ * Closes the contact details section by removing visibility classes.
+ */
 function closeContactDetails(){
     const detailsSection = document.getElementById('selectedContactDetails');
     detailsSection.classList.remove('visible');
     detailsSection.classList.remove('active');
 }
+
 
 /**
  * Fetches and displays the contacts when the page is loaded.

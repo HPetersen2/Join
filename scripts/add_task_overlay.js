@@ -5,24 +5,21 @@
 function monitorMediaQuery() {
   const mediaQuery = window.matchMedia('(min-width: 1150px)');
 
-  /**
-   * Handles media query changes.
-   * Redirects to 'main.html' if overlay mode is active and media query matches.
-   * @param {MediaQueryListEvent} e - The media query change event.
-   */
+/**
+ * Handles media query changes.
+ * Redirects to 'main.html' if overlay mode is active and media query matches.
+ * @param {MediaQueryListEvent} e - The media query change event.
+ */
   function handleMediaChange(e) {
       if (e.matches && isOverlayModeActive()) {
           console.log("Screen width > 1150px and overlay is active. Redirecting to the main page.");
-          window.location.href = 'main.html'; // Adjust URL to your main page
+          window.location.href = 'main.html';
       }
   }
-
-  mediaQueryListener = handleMediaChange; // Store listener for cleanup
+  mediaQueryListener = handleMediaChange;
   mediaQuery.addEventListener('change', handleMediaChange);
-
-  // Initial check if media query matches and overlay is active
   if (mediaQuery.matches && isOverlayModeActive()) {
-      window.location.href = 'main.html'; // Adjust URL to your main page
+      window.location.href = 'main.html';
   }
 }
 
@@ -33,7 +30,7 @@ function stopMediaQueryMonitoring() {
   const mediaQuery = window.matchMedia('(min-width: 1150px)');
   if (mediaQueryListener) {
       mediaQuery.removeEventListener('change', mediaQueryListener);
-      mediaQueryListener = null; // Reset listener
+      mediaQueryListener = null;
   }
 }
 
@@ -68,7 +65,6 @@ function closeTaskOverlay() {
   hideOverlay();
   removeOverlayActiveClass();
   refreshTasksIfAvailable();
-  
 }
 
 /**

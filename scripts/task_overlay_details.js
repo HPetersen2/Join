@@ -21,53 +21,59 @@ function applyStylesToIframe(iframe, cssContent) {
       }
     };
   }
-  /**
-   * Function: closeTaskOverlay
-   * Description: Hides the task overlay and resets its contents.
-   */
-  function closeTaskOverlay() {
+
+/**
+ * Function: closeTaskOverlay
+ * Description: Hides the task overlay and resets its contents.
+ */
+function closeTaskOverlay() {
     const overlay = document.getElementById('task-overlay');
     if (overlay) {
-      overlay.style.display = 'none'; // Hide the overlay
-      clearTask(); // Reset the overlay contents
+        overlay.style.display = 'none'; // Hide the overlay
+        clearTask(); // Reset the overlay contents
     }
-  }
+}
   
-  /**
-   * Function to clear the overlay Inputs
-   */
-  function clearInputsAndCloseOverlay() {
+/**
+ * Function to clear the overlay Inputs
+ */
+function clearInputsAndCloseOverlay() {
     const overlay = document.getElementById('taskoverlay');
     if (overlay) {
-      overlay.classList.remove('nohidden');
-      overlay.classList.add('gethidden');
+        overlay.classList.remove('nohidden');
+        overlay.classList.add('gethidden');
     }
     clearTask();
-  }
-  function openDropdown() {
+}
+
+/**
+ * Toggles the visibility of the dropdown menu for the user. 
+ * If the dropdown is shown, it loads the contacts and synchronizes checkboxes.
+ */
+function openDropdown() {
     let dropdown = document.getElementById('dropdown-user');
     dropdown.style.display = dropdown.style.display === "flex" ? "none" : "flex";
-  
+
     if (dropdown.style.display === "flex") {
         loadContacts().then(() => {
             synchronizeCheckboxes();
         });
     }
-  }
+}
   
-  /**
-  * Closes the dropdown when clicking outside.
-  * @param {Event} event - The click event.
-  */
-  function closeDropdownOnClickOutside(event) {
+/**
+ * Closes the dropdown when clicking outside.
+ * @param {Event} event - The click event.
+ */
+    function closeDropdownOnClickOutside(event) {
     const dropdown = document.getElementById('dropdown-user');
     const container = document.querySelector('.dropdown');
     if (dropdown && container && !container.contains(event.target)) {
         dropdown.style.display = 'none';
     }
     document.getElementById('dropdown-input').value = '';
-  }
-  document.addEventListener('click', closeDropdownOnClickOutside);
+}
+document.addEventListener('click', closeDropdownOnClickOutside);
   
 /**
  * Generates initials for a contact.
@@ -128,7 +134,6 @@ function clearInputs() {
     document.getElementById("selectcategory").value = '';
     document.getElementById("addsubtasks").value = '';
     document.getElementById("dropdown-input").value = '';
-
 }
 /**
  
@@ -167,6 +172,10 @@ function validateInput() {
 
 document.getElementById('title').addEventListener('input', validateInput);
 
+/**
+ * Validates the input and submits the form if the input field is not empty.
+ * Displays a success message if the form is successfully submitted.
+ */
 function submitForm() {
     validateInput();
 
@@ -177,7 +186,6 @@ function submitForm() {
 }
 
 document.getElementById('title').addEventListener('input', validateInput);
-
 
 /**
  * Validates the category selection input.
@@ -193,25 +201,41 @@ function validateSelectCategory() {
     }
 }
 
+/**
+ * Checks if the provided category select input is empty.
+ * 
+ * @param {HTMLSelectElement} selectCategory - The select input element for the category.
+ * @returns {boolean} - Returns true if the select input is empty, false otherwise.
+ */
 function isCategoryEmpty(selectCategory) {
     return selectCategory.value === "";
 }
 
+/**
+ * Displays an error message and styles the select input when the category is invalid.
+ * 
+ * @param {HTMLSelectElement} selectCategory - The select input element for the category.
+ * @param {HTMLElement} categoryErrorMessage - The element where the error message will be shown.
+ */
 function showCategoryError(selectCategory, categoryErrorMessage) {
     selectCategory.classList.add('error');
     selectCategory.style.border = '2px solid red';
     categoryErrorMessage.style.display = 'block';
 }
 
+/**
+ * Hides the error message and removes the error styles from the select input.
+ * 
+ * @param {HTMLSelectElement} selectCategory - The select input element for the category.
+ * @param {HTMLElement} categoryErrorMessage - The element where the error message will be hidden.
+ */
 function hideCategoryError(selectCategory, categoryErrorMessage) {
     selectCategory.classList.remove('error');
     selectCategory.style.border = 'none';
     categoryErrorMessage.style.display = 'none';
 }
 
-
 document.getElementById('selectcategory').addEventListener('change', validateSelectCategory);
-
 
 /**
  * Checks if the category selection is empty.

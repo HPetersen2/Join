@@ -16,7 +16,6 @@ let signedUser = {
 const emailLogin = document.getElementById("login-email");
 const passwordLogin = document.getElementById("login-password");
 const errorMsgLogin = document.getElementById("check-email-password");
-
 const nameSignUp = document.getElementById("signup-name");
 const emailSignUp = document.getElementById("signup-email");
 const passwordSignUp = document.getElementById("signup-password");
@@ -195,11 +194,8 @@ async function signUpUser() {
  * @param {Array} users
  */
 function checkFoundUser(email, users) {
-    // Use Object.values() to get an array of user objects.
     const userArray = Object.values(users);
-    // Use .find() to locate the user with the desired email.
     const foundUser = userArray.find(u => u.email === email.value);
-
     return foundUser != undefined;
 }
 
@@ -221,7 +217,6 @@ function checkPrivacyPolicy(inputCheckbox) {
     if (privacyAccepted.value == 'true') {
         return true;
     } else {
-        //privacy policy must be accepted
         notificationPopUp("Privacy policy must be accepted!");
         inputCheckbox.classList.add('unchecked-privacy');
         privacyAccepted.focus();
@@ -260,7 +255,6 @@ function errorPasswords(errorMsg, password, confirmPassword) {
  * @param {HTMLElement} email
  */
 function emailAlreadyLinked(email) {
-    //Email is already linked to an account
     notificationPopUp("Email is already linked to an account!");
     email.classList.add('wrong-input');
     email.focus();
@@ -294,15 +288,12 @@ function capitalizeNames(name) {
  * and redirect the user to index.html, the login page.
  */
 function showSucessSignedUp() {
-    // Show success message on successful sign-up
     const successMessage = document.querySelector('.success-signed');
     successMessage.style.display = 'flex';
-
-    // Hide the success message after a few seconds
     setTimeout(() => {
         successMessage.style.display = 'none';
         window.location.href = "./index.html";
-    }, 2000); // Duration as needed
+    }, 2000);
 }
 
 /**
@@ -310,14 +301,10 @@ function showSucessSignedUp() {
  * @param {String} msg
  */
 function notificationPopUp(msg = "") {
-    // Show notification
     const notificationMessage = document.querySelector('.notification');
     let spanMessage = document.getElementById("pop-up-notification");
-
     spanMessage.innerHTML = msg;
     notificationMessage.style.display = 'flex';
-
-    // Hide the notification after a few seconds
     setTimeout(() => {
         notificationMessage.style.display = 'none';
     }, 1500); // Duration as needed

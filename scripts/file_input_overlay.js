@@ -69,7 +69,6 @@ async function handleFileChange(inputEl) {
     if (!files || files.length === 0) {
         return;
     }
-
     for (const file of files) {
         if (!validateFile(file)) return;
         await processFile(file);

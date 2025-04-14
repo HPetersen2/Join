@@ -158,7 +158,6 @@ async function saveTask(newTask) {
             body: JSON.stringify(newTask),
         });
 
-        // Erfolgsmeldung anzeigen
         const successOverlay = document.getElementById('success-overlay');
         if (successOverlay) {
             successOverlay.style.display = 'flex';
