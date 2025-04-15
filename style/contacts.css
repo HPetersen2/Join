@@ -117,3 +117,21 @@
 .initialsCircle:hover { transform: scale(1.3); transition: 0.3s ease-in-out; }
 
 .responsiveEditContacts { display: none; }
+
+#name-input-msg, #email-input-msg, #phone-input-msg {
+    color: #FF8190 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 120%;
+    margin-top: 4px !important;
+    margin-left: 4px !important;
+}
+
+#name-edit-input-msg, #email-edit-input-msg, #phone-edit-input-msg {
+    color: #FF8190 !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 120%;
+    margin-top: 4px !important;
+    margin-left: 4px !important;
+}
