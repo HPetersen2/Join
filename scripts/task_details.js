@@ -326,7 +326,6 @@ function validateDateInput() {
     }
 }
 
-
 document.getElementById('due-date-input').addEventListener('input', validateDateInput);
 
 /**

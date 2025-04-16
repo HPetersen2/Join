@@ -218,6 +218,7 @@ function changeColor(element, color) {
         setPriority('Low');
     }
 }
+
 window.addEventListener('DOMContentLoaded', function () {
     const defaultButton = document.getElementById('prio-orange');
     if (defaultButton) {
