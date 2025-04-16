@@ -173,12 +173,12 @@ function editEmailToKey(email = "") {
  */
 async function signUpUser() {
     clearMessageBoxes();
-    
+
     if (!areFieldsFilled()) return notificationPopUp("Please fill in all fields correctly.");
     if (!areInputsValid()) return;
     if (!checkPrivacyPolicy(inputCheckboxSignUp)) return;
     if (!matchingPassword(passwordSignUp.value, confirmSignUp.value)) return errorPasswords();
-
+    if (!isEmailValid(emailSignUp.value)) return;
     if (nameSignUp.value === "") return highlightInvalidName();
 
     setSignedUser(nameSignUp, emailSignUp, passwordSignUp);
@@ -369,8 +369,6 @@ function validateEmailInput(event) {
     if (!emailRegex.test(emailInput.value)) {
         document.getElementById('signup-email').classList.add('unvalid-border');
         document.getElementById('email-signup-input-msg').classList.add('show-msg');
-    } else {
-        emailValid =  true;
     }
 }
 
@@ -382,4 +380,15 @@ function clearMessageBoxes() {
     document.getElementById('email-signup-input-msg').classList.add('disabled-msg');
     document.getElementById('confirm-password').classList.remove('unvalid-border');
     document.getElementById('password-signup-input-msg').classList.add('disabled-msg');
+}
+
+/**
+ * Checks whether a given email address has a valid format.
+ * 
+ * @param {string} email - The email address to validate.
+ * @returns {boolean} True if the email is valid, false otherwise.
+ */
+function isEmailValid(email) {
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
+    return emailRegex.test(email.trim());
 }
