@@ -3,6 +3,7 @@
  * redirect the user to the summary page.
  */
 let loggedUser = {};
+const emailValid = false;
 if (sessionStorage.loggedUser != undefined) {
     window.location.href = "./summary.html";
 }
@@ -168,36 +169,59 @@ function editEmailToKey(email = "") {
 }
 
 /**
- * This function saves the signed up user to firebase
+ * Saves a signed-up user to Firebase after validating input fields.
  */
 async function signUpUser() {
     clearMessageBoxes();
-    if(document.getElementById('privacy-checkbox').value && nameSignUp.value != "" && emailSignUp.value != "", passwordSignUp.value != "" && confirmSignUp.value != "") {
-        if(!nameSignUp.value.startsWith(" ") && !emailSignUp.value.startsWith(" ") && !passwordSignUp.value.startsWith(" ") && !confirmSignUp.value.startsWith(" "))
-            if (checkPrivacyPolicy(inputCheckboxSignUp)) {
-                if (matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
-                    if(nameSignUp.value != "") {
-                        setSignedUser(nameSignUp, emailSignUp, passwordSignUp);
-                        let users = await loadData("users");
-                        if (checkFoundUser(emailSignUp, users)) {
-                            emailAlreadyLinked(emailSignUp);
-                        } else {
-                            await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
-                            resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
-                            clearMessageBoxes();
-                            showSucessSignedUp();
-                        }
-                    } else {
-                        document.getElementById('signup-name').classList.add('unvalid-border');
-                        document.getElementById('name-signup-input-msg').classList.add('show-msg');
-                    }
+    
+    if (!areFieldsFilled()) return notificationPopUp("Please fill in all fields correctly.");
+    if (!areInputsValid()) return;
+    if (!checkPrivacyPolicy(inputCheckboxSignUp)) return;
+    if (!matchingPassword(passwordSignUp.value, confirmSignUp.value)) return errorPasswords();
 
-                } else
-                    errorPasswords();
-                }      
-    } else {
-        notificationPopUp("Please fill in all fields correctly.");
-    }
+    if (nameSignUp.value === "") return highlightInvalidName();
+
+    setSignedUser(nameSignUp, emailSignUp, passwordSignUp);
+    const users = await loadData("users");
+
+    if (checkFoundUser(emailSignUp, users)) return emailAlreadyLinked(emailSignUp);
+
+    await patchData("users/" + editEmailToKey(emailSignUp.value), signedUser);
+    resetSignUpInputs(emailSignUp, nameSignUp, passwordSignUp, confirmSignUp);
+    clearMessageBoxes();
+    showSucessSignedUp();
+}
+
+/**
+ * Checks if all required signup fields are filled.
+ * 
+ * @returns {boolean} True if all fields are filled, false otherwise.
+ */
+function areFieldsFilled() {
+    return document.getElementById('privacy-checkbox').value &&
+        nameSignUp.value && emailSignUp.value && passwordSignUp.value && confirmSignUp.value;
+}
+
+/**
+ * Validates that none of the input fields start with a whitespace character.
+ * 
+ * @returns {boolean} True if all inputs are valid, false otherwise.
+ */
+function areInputsValid() {
+    return !nameSignUp.value.startsWith(" ") &&
+           !emailSignUp.value.startsWith(" ") &&
+           !passwordSignUp.value.startsWith(" ") &&
+           !confirmSignUp.value.startsWith(" ");
+}
+
+/**
+ * Highlights the name input field as invalid and shows an error message.
+ * 
+ * @returns {void}
+ */
+function highlightInvalidName() {
+    document.getElementById('signup-name').classList.add('unvalid-border');
+    document.getElementById('name-signup-input-msg').classList.add('show-msg');
 }
 
 /**
@@ -345,6 +369,8 @@ function validateEmailInput(event) {
     if (!emailRegex.test(emailInput.value)) {
         document.getElementById('signup-email').classList.add('unvalid-border');
         document.getElementById('email-signup-input-msg').classList.add('show-msg');
+    } else {
+        emailValid =  true;
     }
 }
 
