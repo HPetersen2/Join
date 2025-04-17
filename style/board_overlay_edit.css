@@ -359,6 +359,13 @@
         width: 250px;
         overflow-x: scroll;
     }
+    .overlay-input-field-date {
+        position: relative;
+    }
+    .overlay-input-field-date img {
+        position: absolute;
+        right: 10px;
+    }
     #subtask-edit {
         font-size: unset;
     }
