@@ -44,7 +44,6 @@ inputPassword.addEventListener('keyup', function() {
         passwordIcon.classList.add('lock-icon');
         if (confirmPassword.value === "") {
             confirmPassword.classList.remove('wrong-input');
-            errorMsg.classList.add('hidden');
         }
     }
 });

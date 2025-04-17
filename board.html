@@ -91,7 +91,7 @@
           </div>
         </div>
       </header>
-      <div class="board-header">
+      <section class="board-header">
         <div class="board-search">
           <div class="board-h1-button">
             <h1>Board</h1>
@@ -127,15 +127,14 @@
           <button onclick="openTaskOverlay()" class="add-task-button"><span>Add task</span><img
               src="./assets/icons/add.png" alt="add"></button>
         </div>
-      </div>
+      </section>
       <div class="search-notification d-none" id="search-notification">
         <div class="search-msg-pop-up">
           <span id="search-pop-up-notification">No results found</span>
         </div>
       </div>
       <div class="board-lists" id="board-lists" onmousemove="move(event)" ontouchmove="move(event)">
-
-        <div class="list" ondrop="changeList('to-do')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        <section class="list" ondrop="changeList('to-do')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>To do</h3>
@@ -144,8 +143,8 @@
           <div class="to-do" id="to-do">
 
           </div>
-        </div>
-        <div class="list" ondrop="changeList('in-progress')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        </section>
+        <section class="list" ondrop="changeList('in-progress')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>In progress</h3>
@@ -154,8 +153,8 @@
           <div class="in-progress" id="in-progress">
 
           </div>
-        </div>
-        <div class="list" ondrop="changeList('await-feedback')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        </section>
+        <section class="list" ondrop="changeList('await-feedback')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>Await feedback</h3>
@@ -164,8 +163,8 @@
           <div class="await-feedback" id="await-feedback">
 
           </div>
-        </div>
-        <div class="list" ondrop="changeList('done')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        </section>
+        <section class="list" ondrop="changeList('done')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>Done</h3>
@@ -173,15 +172,15 @@
           <div class="done" id="done">
 
           </div>
-        </div>
+        </section>
       </div>
 
     </main>
   </section>
-  <div class="task-details" id="task-details">
+  <section class="task-details" id="task-details">
     <div id="image-viewer" style="display: none;"></div>
 
-  </div>
+  </section>
 
   <footer class="responsive-footer">
     <div class="main-links-container-responsive">

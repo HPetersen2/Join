@@ -105,7 +105,11 @@ function getFullName(contact) {
  * Clears all task-related inputs and resets the form.
  */
 function clearTask() {
+    allFiles = [];
+    document.getElementById('upload-field').innerHTML = `<p class="upload-placeholder">Upload your attachments</p>`;
     clearInputs();
+    toggleShowIcons(false);
+    toggleAddSubtaskButton(true);
     clearSubtaskList();
     resetPriorityButtons();
     displayContacts(allContacts);

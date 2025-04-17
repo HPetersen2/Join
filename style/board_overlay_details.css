@@ -249,6 +249,12 @@
     .task-details {
         max-height: 75vh;
     }
+    .footer-overlay {
+        padding-bottom: 20px;
+    }
+    #more-user-overlay {
+        padding-bottom: 0;
+    }
 }
 
 @media (max-width: 768px) {

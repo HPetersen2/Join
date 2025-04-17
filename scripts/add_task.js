@@ -240,6 +240,22 @@ function applyButtonColor(element, color) {
 }
 
 /**
+ * Listens to changes in the 'addsubtasks' input field.
+ * Calls addSubtask() if input is not empty,
+ * otherwise toggles icons and button visibility.
+ */
+const input = document.getElementById('addsubtasks');
+
+input.addEventListener('input', () => {
+  if (input.value.trim() !== '') {
+    addSubtask();
+  } else {
+    toggleShowIcons(false);
+    toggleAddSubtaskButton(true);
+  }
+});
+
+/**
  * Toggles the visibility of the subtask input and buttons.
  */
 function addSubtask() {

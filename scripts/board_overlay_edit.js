@@ -1,3 +1,4 @@
+let idTask = 0;
 /**
  * This function is called as soon as a task is to be processed. All parameters are first collected and transferred to other functions.
  * @param {number} id - Transfers the ID of the task in question.
@@ -8,6 +9,7 @@
  */
 async function editTask(id, title, description, dueDate, priority) {
     id--;
+    idTask = id;
     let refOverlay = document.getElementById('task-details');
     refOverlay.innerHTML = "";
     refOverlay.innerHTML = getOverlayEdit(id, title, description, dueDate);
