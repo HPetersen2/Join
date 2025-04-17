@@ -45,7 +45,7 @@ async function loadData(path = "") {
  */
 async function patchData(path = "", data = {}) {
     let response = await fetch(BASE_URL + path + ".json", {
-        method: "PATCH",
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
         },
