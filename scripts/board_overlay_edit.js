@@ -357,11 +357,11 @@ async function selectedUserEdit(id) {
  * @param {array} colors 
  */
 function renderOverlayEditUser(usersFirstLetters, colors) {
-    if (usersFirstLetters.length >= 8) {
-        for (let i = 0; i < 8; i++) {
+    if (usersFirstLetters.length >= 5) {
+        for (let i = 0; i < 5; i++) {
             document.getElementById('user-names-edit-overlay').innerHTML += getUserInititalsOverlayEdit(colors[i], usersFirstLetters[i]);
         }
-        let userslength = usersFirstLetters.length - 8;
+        let userslength = usersFirstLetters.length - 4;
         document.getElementById('user-names-edit-overlay').innerHTML += getMoreUserOverlayEdit(userslength);
     } else {
         for (let i = 0; i < usersFirstLetters.length; i++) {

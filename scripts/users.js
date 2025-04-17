@@ -392,3 +392,28 @@ function isEmailValid(email) {
     const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/i;
     return emailRegex.test(email.trim());
 }
+
+/**
+ * Checks if the current value of the signup email input is valid.
+ * If valid, it removes the error styling and validation message.
+ */
+function checkChangeEmail() {
+    if (isEmailValid(emailSignUp.value)) {
+        document.getElementById('signup-email').classList.remove('unvalid-border');
+        document.getElementById('email-signup-input-msg').classList.remove('show-msg');
+    }
+}
+
+/**
+ * Adds an input event listener to the signup email field.
+ * Triggers checkChangeEmail() whenever the user types in the field.
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    const emailInput = document.getElementById('signup-email');
+
+    if (emailInput) {
+        emailInput.addEventListener('input', () => {
+            checkChangeEmail();
+        });
+    }
+});

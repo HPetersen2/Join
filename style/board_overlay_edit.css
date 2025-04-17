@@ -355,9 +355,6 @@
 }
 
 @media (max-width: 400px) {
-    .overlay-edit-container {
-        width: 250px;
-    }
     .overlay-priority-container {
         width: 250px;
         overflow-x: scroll;
