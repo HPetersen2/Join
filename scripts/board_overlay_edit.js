@@ -382,3 +382,39 @@ function editMode(id) {
         createContainer.innerHTML = getSubtaskOverlayAddIcon();
     }
 }
+
+/**
+ * Waits for the dynamic appearance of an input field with ID 'subtask-edit',
+ * then observes its content. Depending on whether the input is empty or not,
+ * the function updates the element with ID 'create-subtask-overlay' by calling
+ * either `getSubtaskOverlayIcons(idTask)` or `getSubtaskOverlayAddIcon()`.
+ *
+ * This function uses a MutationObserver to detect when the input is added
+ * to the DOM, then attaches an 'input' event listener to react to content changes.
+ *
+ * Assumptions:
+ * - The input field is rendered asynchronously (e.g., loaded dynamically).
+ * - A global variable `idTask` must exist and contain the task ID.
+ * - `getSubtaskOverlayIcons(idTask)` and `getSubtaskOverlayAddIcon()` are defined elsewhere.
+ */
+function waitForInputAndObserveContent() {
+    const observer = new MutationObserver(() => {
+        const input = document.getElementById('subtask-edit');
+        if (input) {
+            observer.disconnect();
+            const updateOverlay = () => {
+                const overlay = document.getElementById('create-subtask-overlay');
+                if (!overlay) return;
+                if (input.value.trim() !== '') {
+                    overlay.innerHTML = getSubtaskOverlayIcons(idTask);
+                } else {
+                    overlay.innerHTML = getSubtaskOverlayAddIcon();
+                }
+            };
+            updateOverlay();
+            input.addEventListener('input', updateOverlay);
+        }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+window.addEventListener('DOMContentLoaded', waitForInputAndObserveContent);
