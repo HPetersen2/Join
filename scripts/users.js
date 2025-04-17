@@ -394,26 +394,25 @@ function isEmailValid(email) {
 }
 
 /**
- * Checks if the current value of the signup email input is valid.
- * If valid, it removes the error styling and validation message.
- */
-function checkChangeEmail() {
-    if (isEmailValid(emailSignUp.value)) {
-        document.getElementById('signup-email').classList.remove('unvalid-border');
-        document.getElementById('email-signup-input-msg').classList.remove('show-msg');
-    }
-}
-
-/**
- * Adds an input event listener to the signup email field.
- * Triggers checkChangeEmail() whenever the user types in the field.
+ * Adds an input event listener to the signup email and passwort confirm field.
+ * Triggers checkChangeEmail() and checkChangeConfirmPassword() whenever the user types in the field.
  */
 document.addEventListener('DOMContentLoaded', () => {
-    const emailInput = document.getElementById('signup-email');
+    if (emailSignUp) {
+        emailSignUp.addEventListener('input', () => {
+            if (isEmailValid(emailSignUp.value)) {
+                document.getElementById('signup-email').classList.remove('unvalid-border');
+                document.getElementById('email-signup-input-msg').classList.remove('show-msg');
+            }
+        });
+    }
 
-    if (emailInput) {
-        emailInput.addEventListener('input', () => {
-            checkChangeEmail();
+    if (confirmSignUp) {
+        confirmSignUp.addEventListener('input', () => {
+            if(matchingPassword(passwordSignUp.value, confirmSignUp.value)) {
+                document.getElementById('confirm-password').classList.remove('unvalid-border');
+                document.getElementById('password-signup-input-msg').classList.remove('show-msg');
+            }
         });
     }
 });
