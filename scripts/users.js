@@ -51,7 +51,6 @@ async function patchData(path = "", data = {}) {
         },
         body: JSON.stringify(data)
     });
-
     return responseToJson = await response.json();
 }
 
