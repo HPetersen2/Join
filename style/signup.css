@@ -387,7 +387,6 @@ input[type=text] {
     }
 
     .signup-field form input[type=email], input[type=password], input[type=text] {
-        width: 218px;
         font-size: 16px;
     }
 
@@ -405,6 +404,7 @@ input[type=text] {
     }
 
     .signup-field form {
+        align-items: center;
         gap: 16px;
     }
 }
