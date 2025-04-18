@@ -167,7 +167,7 @@ document.addEventListener('click', function(event) {
     const edit = document.getElementById('edit-container');
     const del = document.getElementById('delete-container');
   
-    if (taskDetails) {
+    if (taskDetails && edit && del) {
       if (!taskDetails.contains(event.target) && !edit.contains(event.target) && !del.contains(event.target)) {
         closeOverlay();
       }
