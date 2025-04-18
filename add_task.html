@@ -23,49 +23,48 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/viewerjs/1.11.7/viewer.min.js" integrity="sha512-lZD0JiwhtP4UkFD1mc96NiTZ14L7MjyX5Khk8PMxJszXMLvu7kjq1sp4bb0tcL6MY+/4sIuiUxubOqoueHrW4w==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
 </head>
 <body id="main-page" onload="setUserInitials()">
-    <div class="container">
+    <section class="container">
         <aside class="sidebar">
-            <div class="sidebar-logo">
+            <section class="sidebar-logo">
                 <img src="assets/img/join_logo.png" alt="Join-Logo">
-            </div>
-            <div class="main-links-container">
+            </section>
+            <section class="main-links-container">
                 <a href="./summary.html" class="main-link">
                     <img src="./assets/icons/summary_icon.png" alt="summary_icon">
-                    Summary
+                    <span>Summary</span>
                 </a>
                 <a href="./add_task.html" class="main-link active_side">
                     <img src="./assets/icons/add_task_icon.png" alt="addtask_icon">
-                    Add Task
+                    <span>Add Task</span>
                 </a>
                 <a href="./board.html" class="main-link">
                     <img src="./assets/icons/board_icon.png" alt="board_icon">
-
-                    Board
+                    <span>Board</span>
                 </a>
                 <a href="./contacts.html" class="main-link">
                     <img src="./assets/icons/contacts_icon.png" alt="contact_icon">
-                    Contacts
+                    <span>Contacts</span>
                 </a>
-            </div>
-            <div class="legal-links-container">
+            </section>
+            <section class="legal-links-container">
                 <a href="./privacy_policy.html" class="legal-link">Privacy Policy</a>
                 <a href="./legal_notice.html" class="legal-link">Legal notice</a>
-            </div>
+            </section>
         </aside>
         <main class="main-content">
-            <div class="submenu d-none">
-                <div class="submenu-content closed">
+            <section class="submenu d-none">
+                <section class="submenu-content closed">
                     <a class="submenu-help" href="help.html">Help</a>
                     <a href="legal_notice.html">Legal Notice</a>
                     <a href="privacy_policy.html">Privacy Policy</a>
                     <a onclick="logOut()">Log out</a>
-                </div>
-            </div>
+                </section>
+            </section>
             <header class="header">
-                <div class="header-content">
+                <section class="header-content">
                     <p>Kanban Project Management Tool</p>
                     <img class="responsiveLogo" src="assets/img/join_logo_dark.png" alt="Join-Logo">
-                    <div class="header-icons">
+                    <section class="header-icons">
                         <a class="help-link" href="./help.html"><svg width="32" height="32" viewBox="0 0 32 32"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_233325_3412" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
@@ -78,28 +77,28 @@
                                         fill="#A8A8A8" />
                                 </g>
                             </svg></a>
-                        <div class="user-icon" onclick="toggleSubmenu()">
+                        <section class="user-icon" onclick="toggleSubmenu()">
                             <b id="user-initials"></b>
-                        </div>
-                    </div>
-                </div>
+                        </section>
+                    </section>
+                </section>
             </header>
             <div class="overall-container">
                 <section class="headline">
                     <h1 class="overlay-hl">Add Task</h1>
                 </section>
                 <section class="content-section-confirm">
-                    <div id="taskover-cont" class="content-container">
+                    <section id="taskover-cont" class="content-container">
                         <section id="cont-left" class="content-left">
-                            <p id="title-p" style="margin-bottom: 10px;">
+                            <label id="title-p" style="margin-bottom: 10px;">
                                 Title<span style="color: red;">*</span>
-                            </p>
+                            </label>
                             <div class="form-field">
                                 <input id="title" class="input-title" type="text" placeholder="Enter a title"
                                     onblur="validateInput()">
                                 <span class="error-message" id="error-message">Please select a Title</span>
                             </div>
-                            <p id="description-p" style="margin-bottom: 10px; margin-top: 24px;">Description</p>
+                            <label id="description-p" style="margin-bottom: 10px; margin-top: 24px;">Description</label>
                             <div class="textarea">
                                 <textarea id="description" type="text" placeholder="Enter a Description"></textarea>
                                 <img src="./assets/icons/description-icon.png" alt="logo">
@@ -132,10 +131,10 @@
                         </section>
                         <div class="separating-line"></div>
                         <section class="content-right">
-                            <p id="date-p" style="margin-bottom: 10px;">
+                            <label id="date-p" style="margin-bottom: 10px;">
                                 Due Date<span style="color: red;">*</span>
-                            </p>
-                            <div class="form-field">
+                            </label>
+                            <section class="form-field">
                                 <div id="errorborder" class="date-container">
                                     <input type="date" id="due-date-input" name="date" placeholder="dd/mm/yyyy"
                                         class="date-input" onblur="validateDateInput()" pattern="\d{2}/\d{2}/\d{4}"
@@ -144,9 +143,9 @@
                                 </div>
                                 <span class="error-message" id="date-error-message">Please select a date in the right
                                     Format</span>
-                            </div>
-                            <p id="prio-p" style="margin-bottom: 10px; margin-top: 24px;">Prio</p>
-                            <div class="prio-container">
+                                </section>
+                            <label id="prio-p" style="margin-bottom: 10px; margin-top: 24px;">Prio</label>
+                            <section class="prio-container">
                                 <button style="cursor: pointer;" onclick="changeColor(this, '#ff3d00')" id="prio-red"
                                     class="prio-u">
                                     <b>Urgent</b><img src="assets/icons/urgent_icon.png" alt="PrioIcon">
@@ -159,11 +158,11 @@
                                     class="prio-l">
                                     <b>Low</b><img src="assets/icons/low_icon.png" alt="LowIcon">
                                 </button>
-                            </div>
-                            <p style="margin-top: 24px; margin-bottom: 10px;">
+                            </section>
+                            <label style="margin-top: 24px; margin-bottom: 10px;">
                                 Category<span style="color: red;">*</span>
-                            </p>
-                            <div class="form-field">
+                            </label>
+                            <section class="form-field">
                                 <select class="select-minimal" id="selectcategory" name="category"
                                     onblur="validateSelectCategory()">
                                     <option value="" disabled selected hidden>Select task category</option>
@@ -171,11 +170,11 @@
                                     <option value="User Story">User Story</option>
                                 </select>
                                 <span class="error-message" id="category-error-message">Please select a category.</span>
-                            </div>
-                            <p class="subtask-p" style="margin-top: 24px; margin-bottom: 10px;">
+                            </section>
+                            <label class="subtask-p" style="margin-top: 24px; margin-bottom: 10px;">
                                 Subtasks
-                            </p>
-                            <div class="input-container">
+                            </label>
+                            <section class="input-container">
                                 <input id="addsubtasks" name="addsubtasks" placeholder="Add new subtask" minlength="3"
                                     maxlength="36">
                                 <img onclick="addSubtask()" id="add-subtask" class="input-icon"
@@ -187,14 +186,14 @@
                                     <img onclick="confirmSubtask()" id="confirm-subtask" class="input-icon-after"
                                         src="./assets/icons/create-task.png" alt="ConfirmTaskIcon">
                                 </div>
-                            </div>
+                            </section>
                             <ul id="subtask-list"></ul>
-                            <div id="subtask-limit-message"
+                            <section id="subtask-limit-message"
                                 style="display: none; color: red; font-size: 14px; margin-top: 10px;">
                                 Limit of subtasks reached!
-                            </div>
+                            </section>
                             <section class="confirm">
-                                <div class="button-container">
+                                <section class="button-container">
                                     <button onclick="clearTask()" id="clear" class="clear-button">
                                         <span>Clear</span> <svg class="clear-image" width="14" height="14"
                                             viewBox="0 0 14 14" fill="#" xmlns="http://www.w3.org/2000/svg">
@@ -207,14 +206,14 @@
                                         <span id="createspan">Create Task</span><img
                                             src="./assets/icons/create-task.png" alt="ConfirmIcon">
                                     </button>
-                                </div>
+                                </section>
                             </section>
-                    </div>
+                        </section>
                     <p class="required"><span style="color: red;">*</span>This field is required</p>
                 </section>
             </div>
         </main>
-    </div>
+    </section>
     <footer class="responsive-footer">
         <div class="main-links-container-responsive">
             <a href="./summary.html" class="main-link-responsive">

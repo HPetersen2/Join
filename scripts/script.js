@@ -168,11 +168,7 @@ document.addEventListener('click', function(event) {
     const del = document.getElementById('delete-container');
   
     if (taskDetails) {
-      if (
-        !taskDetails.contains(event.target) &&
-        (!edit || !edit.contains(event.target)) &&
-        (!del || !del.contains(event.target))
-      ) {
+      if (!taskDetails.contains(event.target) && !edit.contains(event.target) && !del.contains(event.target)) {
         closeOverlay();
       }
     }

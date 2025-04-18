@@ -21,11 +21,11 @@
 <body onload="fetchContacts(); setUserInitials()">
     <div class="container">
     <aside class="sidebar">
-        <div class="sidebar-logo">
+        <section class="sidebar-logo">
             <img src="assets/img/join_logo.png" alt="Join Logo">
-        </div>
+        </section>
         
-        <div class="main-links-container">
+        <section class="main-links-container">
             <a href="summary.html" class="main-link">
                 <img src="assets/icons/summary_icon.png" alt="Summary Icon"> Summary
             </a>
@@ -41,58 +41,58 @@
             <a href="contacts.html" class="main-link active_side">
                 <img src="assets/icons/contacts_icon.png" alt="Contacts Icon"> Contacts
             </a>
-        </div>
+        </section>
         
-        <div class="legal-links-container">
+        <section class="legal-links-container">
             <a href="./privacy_policy.html" class="legal-link">Privacy Policy</a>
             <a href="./legal_notice.html" class="legal-link">Legal notice</a>
-        </div>
+        </section>
 
     </aside>
 
     <main class="main-content">
         <section id="addContactForm">
             <form novalidate onsubmit="submitContact(); return false;">
-                <div class="leftContactOverlay">
+                <section class="leftContactOverlay">
                     <img class="addContactLogo" src="assets/img/join_logo.png" alt="Join-Logo">
-                    <div class="leftContactText">
+                    <section class="leftContactText">
                         <p class="addContactHeadline" id="addContactHeadline">Add contact</p>
                         <p class="addContactSubText" id="addContactSubText">Tasks are better with a team!</p>
                         <img onclick="closeAddContactForm(); showFooter()" class="addContactCloseButton editContactCloseButton" src="assets/icons/white_close.png" alt="Close">
-                    </div>
+                    </section>
                     <div class="addContactSeparatorLine"></div>
-                </div>
+                </section>
         
-                <div class="rightContactOverlay">
-                    <div class="addDetailsContainer">
-                        <div class="addDetailsInitialsCircle" id="addDetailsInitials">
+                <section class="rightContactOverlay">
+                    <section class="addDetailsContainer">
+                        <section class="addDetailsInitialsCircle" id="addDetailsInitials">
                             <img style="height: 42px; width: 42px;" src="assets/icons/contacts_personicon.png" alt="Contact">
-                        </div>
-                    </div>
+                        </section>
+                    </section>
         
-                    <div class="addContactContainer">
+                    <section class="addContactContainer">
                         <img class="addContactClose" style="top: 48px; position: absolute; right: 0; cursor: pointer;" src="assets/icons/close.png" alt="Close" onclick="closeAddContactForm()">
                         
-                        <div style="position: relative;">
+                        <section style="position: relative;">
                             <input required class="addName" type="text" id="addName" name="name" placeholder="Name" />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/person_icon.png" alt="Person">
                             <span class="disabled-msg" id="name-input-msg">Please enter a valid name.</span>
-                        </div>
+                        </section>
         
-                        <div style="position: relative;">
+                        <section style="position: relative;">
                             <input required class="addEmail" type="email" id="addEmail" name="email" placeholder="Email" />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/mail_icon.png" alt="Email">
                             <span class="disabled-msg" id="email-input-msg">Please enter a valid email.</span>
-                        </div>
+                        </section>
         
-                        <div style="position: relative;">
+                        <section style="position: relative;">
                             <input required class="addPhone" type="tel" id="addPhone" name="phone" placeholder="Phone" maxlength="20" pattern="\+?[0-9]+"
                                 title="Please enter only numbers."/>
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/phone_icon.png" alt="Phone">
                             <span class="disabled-msg" id="phone-input-msg">Please enter only numbers.</span>
-                        </div>
+                        </section>
         
-                        <div class="addContactButtons">
+                        <section class="addContactButtons">
                             <button type="button" onclick="closeAddContactForm()" id="cancelContactAdd">Cancel
                                 <img src="assets/icons/clear-icon.png" alt="Cancel">
                             </button>
@@ -100,78 +100,78 @@
                                 Create contact
                                 <img src="assets/icons/create-task.png" alt="Save">
                             </button>
-                        </div>
+                        </section>
         
-                        <div class="createdContactOverlay" id="successfullycreatedContactOverlay">
+                        <section class="createdContactOverlay" id="successfullycreatedContactOverlay">
                             <p>Contact successfully created</p>
-                        </div>
-                    </div>
-                </div>
+                        </section>
+                    </section>
+                </section>
             </form>
         </section>
         
 
         <section id="editContactForm">
             <form novalidate onsubmit="submitEditContact(); return false;">
-                <div class="leftContactOverlay">
+                <section class="leftContactOverlay">
                     <img class="editContactLogo" src="assets/img/join_logo.png" alt="Join-Logo">
                     <p class="editContactHeadline" id="editContactHeadline">Edit contact</p>
                     <img onclick="closeEditContactForm(); showFooter()" class="addContactCloseButton editContactCloseButton" src="assets/icons/white_close.png" alt="Close">
                     <div class="editContactseparatorLine"></div>
-                </div>
+                </section>
         
-                <div class="rightContactOverlay">
-                    <div class="addDetailsContainer">
+                <section class="rightContactOverlay">
+                    <section class="addDetailsContainer">
                         <div class="editDetailsInitialsCircle" id="editDetailsInitials"></div>
-                    </div>
+                    </section>
         
-                    <div class="editContactContainer">
+                    <section class="editContactContainer">
                         <img class="addContactClose" style="top: 48px; position: absolute; right: 0; cursor: pointer;" src="assets/icons/close.png" alt="Close" onclick="closeEditContactForm()">
         
-                        <div style="position: relative;">
+                        <section style="position: relative;">
                             <input required class="editName" type="text" id="editName" name="name" placeholder="Name" />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/person_icon.png" alt="Person">
                             <span class="disabled-msg" id="name-edit-input-msg">Please enter a valid name.</span>
-                        </div>
+                        </section>
         
-                        <div style="position: relative;">
+                        <section style="position: relative;">
                             <input required class="editEmail" type="email" id="editEmail" name="email" placeholder="Email" />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/mail_icon.png" alt="Email">
                             <span class="disabled-msg" id="email-edit-input-msg">Please enter a valid email.</span>
-                        </div>
+                        </section>
         
-                        <div style="position: relative;">
+                        <section style="position: relative;">
                             <input required class="editPhone" type="tel" id="editPhone" name="phone" placeholder="Phone" maxlength="20" pattern="\+?[0-9]+" title="Please enter a valid phone number with optional '+' and numbers only." />
                             <img style="position: absolute; top: 12px; right: 16px; height: 24px; width: 24px;" src="assets/icons/phone_icon.png" alt="Phone">
                             <span class="disabled-msg" id="phone-edit-input-msg">Please enter only numbers.</span>
-                        </div>
+                        </section>
         
-                        <div class="editContactButtons">
+                        <section class="editContactButtons">
                             <button type="button" id="deleteContactChanges" onclick="deleteContact('editForm')">Delete</button>
                             <button type="submit" id="saveContactChanges">
                                 Save
                                 <img src="assets/icons/create-task.png" alt="Save">
                             </button>
-                        </div>  
-                    </div>
-                </div>
+                        </section>  
+                    </section>
+                </section>
             </form>
         </section>
         <header>
-            <div class="submenu d-none">
-                <div class="submenu-content closed">
+            <section class="submenu d-none">
+                <section class="submenu-content closed">
                     <a class="submenu-help" href="help.html">Help</a>
                     <a href="legal_notice.html">Legal Notice</a>
                     <a href="privacy_policy.html">Privacy Policy</a>
                     <a onclick="logOut()">Log out</a>
-                </div>
-            </div> 
-            <div class="header-content">
+                </section>
+            </section> 
+            <section class="header-content">
 
                 <p>Kanban Project Management Tool</p>
 
                 <img class="responsiveLogo" src="assets/img/join_logo_dark.png" alt="Join-Logo">
-                <div class="header-icons">
+                <section class="header-icons">
                     <a class="help-link" href="./help.html"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <mask id="mask0_233325_3412" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
@@ -184,70 +184,69 @@
                                     fill="#A8A8A8" />
                             </g>
                         </svg></a>
-                    <div class="user-icon" onclick="toggleSubmenu()">
+                    <section class="user-icon" onclick="toggleSubmenu()">
                         <b id="user-initials"></b>
                        
-                    </div>
-                </div>
-            </div>
+                    </section>
+                </section>
+            </section>
         </header>
         <main style="display: flex;">
             <section class="contactsSection">
-                <div class="addHeader">
+                <section class="addHeader">
                     <button onclick="openAddContactForm(); hideFooter()" class="addContact">
                         <div class="addHeaderText">
                             <b>Add new contact</b>
                             <img style="height: 36px;" src="assets/icons/person_add.png">
                         </div>
                     </button>
-                </div>
+                </section>
         
                 <contacts class="createdContacts" id="createdContacts">
                     <template id="contactTemplate">
-                        <div class="contactItem">
+                        <section class="contactItem">
                             <div class="contactWrapper">
                                 <div class="initialsCircle"></div>
-                                <div class="contactDetails">
+                                <section class="contactDetails">
                                     <p style="display: flex; align-items: center; font-size: 18px;">
                                         <span class="contactName"></span>
                                     </p>
                                     <p><span class="contactEmail"></span></p>
-                                </div>
+                                </section>
                             </div>
-                        </div>
+                        </section>
                     </template>
                 </contacts>
-                
             </section>
         
             <section class="detailsContainer">
                 <img onclick="hideDetails()" class="backArrow" src="assets/icons/arrow_left_line_icon.png" alt="Back-Arrow">
-                <div class="headerSection">
+                <section class="headerSection">
                     <h2 class="contactsHeaderText">Contacts</h2>
                     <div class="separatorLine"></div>
                     <p class="contactsUnderText">Better with a team</p>
-                </div>
+                </section>
 
-                <div class="responsiveMoreDetails">
+                <section class="responsiveMoreDetails">
 
-                    <div class="responsiveEditContactsContainer">
+                    <section class="responsiveEditContactsContainer">
                     <img onclick="toggleContactDetails()" class="responsiveEditContacts default" src="assets/icons/more_vert.png" alt="More">
                     <img onclick="toggleContactDetails()" class="responsiveEditContacts hover" src="assets/icons/more_vert_hover.png" alt="More">
-                    </div>
+                    </section>
 
-                        <div class="responsiveContactDetailsButtons hide-contacts">
+                        <section class="responsiveContactDetailsButtons hide-contacts">
                             <img onclick="openEditContactForm(); hideFooter()" class="responsiveEditContactDetails" src="assets/icons/edit_edit.png" alt="Edit">
                             <img onclick="deleteContact('contactDetails')" class="responsiveDeleteContactDetails" src="assets/icons/edit_delete.png" alt="Delete">
-                        </div>
+                        </section>
                     
-                </div>
+                </section>
                 
         
-                <div class="selectedContactDetails" id="selectedContactDetails">
+                <section class="selectedContactDetails" id="selectedContactDetails">
 
-                    <div class="selectedContactHeader">
+                    <section class="selectedContactHeader">
                         <div class="detailsInitialsCircle" id="detailsInitials"></div>
-                        <div>
+                        <section>
                             <p id="contactId"></p>
                             <p id="detailsName"></p>
                             <div class="contactButtons">
@@ -255,8 +254,8 @@
                             <button class="deleteContactDetails" id="deleteContactDetails" onclick="deleteContact('contactDetails')"><img src="assets/icons/delete_icon.png" alt="Delete">Delete</button>
                             </div>
 
-                        </div>
-                    </div>
+                        </section>
+                    </section>
 
                     <p style="font-size: 20px; margin-top: 42px; margin-bottom: 42px;">Contact Information</p>
                     
@@ -270,13 +269,13 @@
                         <p id="detailsPhone"></p>
                     </div>
                     
-                </div>
+                </section>
             </section>
         </main>
         
         
         <footer class="responsive-footer">
-            <div class="main-links-container-responsive">
+            <section class="main-links-container-responsive">
                 <a href="./summary.html" class="main-link-responsive">
                     <img src="./assets/icons/summary_icon.png" alt="summary_icon">Summary
                 </a>
@@ -293,7 +292,7 @@
                     <img src="./assets/icons/contacts_icon.png" alt="contact_icon">Contacts
                 </a>
 
-            </div>
+            </section>
         </footer>
     </body>
     </html>

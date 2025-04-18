@@ -21,12 +21,12 @@
 </head>
 
 <body onload="onLoadFunc()">
-    <div class="container">
+    <section class="container">
         <aside class="sidebar">
-            <div class="sidebar-logo">
+            <section class="sidebar-logo">
                 <img src="assets/img/join_logo.png" alt="Join-Logo">
-            </div>
-            <div class="main-links-container">
+            </section>
+            <section class="main-links-container">
                 <a href="./summary.html" class="main-link active_side">
                     <img src="./assets/icons/summary_icon.png" alt="summary_icon">
                     Summary
@@ -43,26 +43,26 @@
                     <img src="./assets/icons/contacts_icon.png" alt="contact_icon">
                     Contacts
                 </a>
-            </div>
-            <div class="legal-links-container">
+            </section>
+            <section class="legal-links-container">
                 <a href="./privacy_policy.html" class="legal-link">Privacy Policy</a>
                 <a href="./legal_notice.html" class="legal-link">Legal notice</a>
-            </div>
+            </section>
         </aside>
         <main class="main-content">
-            <div class="submenu d-none">
-                <div class="submenu-content closed">
+            <section class="submenu d-none">
+                <section class="submenu-content closed">
                     <a class="submenu-help" href="help.html">Help</a>
                     <a href="legal_notice.html">Legal Notice</a>
                     <a href="privacy_policy.html">Privacy Policy</a>
                     <a onclick="logOut()">Log out</a>
-                </div>
-            </div>
+                </section>
+            </section>
             <header>
-                <div class="header-content">
+                <section class="header-content">
                     <p>Kanban Project Management Tool</p>
                     <img class="responsiveLogo" src="assets/img/join_logo_dark.png" alt="Join-Logo">
-                    <div class="header-icons">
+                    <section class="header-icons">
                         <a class="help-link" href="./help.html"><svg width="32" height="32" viewBox="0 0 32 32"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <mask id="mask0_233325_3412" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0"
@@ -79,19 +79,19 @@
                         <div class="user-icon" onclick="toggleSubmenu()">
                             <b id="user-initials"></b>
                         </div>
-                    </div>  
-                </div>
+                    </section>  
+                </section>
             </header>
             <section class="overall-container">
 
-                <div class="headline-span">
+                <section class="headline-span">
                     <h1 id="summhl"><b>Join 376</b></h1>
                     <div class="seperator-line"></div>
                     <span class="key-metrics-span">Key Metrics at a Glance</span>
                     <div class="separator-underline"></div>
-                </div>
-                <div class="overall-content-container">
-                    <div class="summary-content-container">
+                </section>
+                <section class="overall-content-container">
+                    <section class="summary-content-container">
                         <section class="top"> 
                                 <div class="todo-container" onclick="redirectToBoard()">
                                     <img class="todo-icon" src="assets/icons/todo-logo.png" alt="TodoIcon">
@@ -146,19 +146,19 @@
                                 </div>
                             </div>
                         </section>
-                    </div>
-                    <div class="greeting-user">
+                    </section>
+                    <section class="greeting-user">
                         <p class="greeting"></p>
                         <h3 class="user" id="greet-user">
                             </h1>
-                    </div>
-                </div>
+                    </section>
+                </section>
             </section>
-    </div>
+    </section>
     </main>
     </div>
     <footer class="responsive-footer">
-        <div class="main-links-container-responsive">
+        <section class="main-links-container-responsive">
             <a href="./summary.html" class="main-link-responsive active_side">
                 <img src="./assets/icons/summary_icon.png" alt="summary_icon">
                 Summary
@@ -175,7 +175,7 @@
                 <img src="./assets/icons/contacts_icon.png" alt="contact_icon">
                 Contacts
             </a>
-        </div>
+        </section>
     </footer>
 </body>
 </html>

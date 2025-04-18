@@ -251,3 +251,9 @@
 .p-info:hover {
     color: #FFFFFF;
 }
+
+@media (max-width: 400px) {
+    .center-info-date {
+        padding-left: 10px;
+    }
+}

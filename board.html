@@ -32,46 +32,46 @@
 <body onload="init();setUserInitials()">
   <section class="container" id="all-content">
     <aside class="sidebar">
-      <div class="sidebar-logo">
+      <section class="sidebar-logo">
         <img src="assets/img/join_logo.png" alt="Join-Logo" />
-      </div>
-      <div class="main-links-container">
+      </section>
+      <section class="main-links-container">
         <a href="./summary.html" class="main-link">
           <img src="./assets/icons/summary_icon.png" alt="summary_icon" />
-          Summary
+          <span>Summary</span>
         </a>
         <a href="./add_task.html" class="main-link">
           <img src="./assets/icons/add_task_icon.png" alt="addtask_icon" />
-          Add Task
+          <span>Add Task</span>
         </a>
         <a href="./board.html" class="main-link active_side">
           <img src="./assets/icons/board_icon.png" alt="board_icon" />
-          Board
+          <span>Board</span>
         </a>
         <a href="./contacts.html" class="main-link">
           <img src="./assets/icons/contacts_icon.png" alt="contact_icon" />
-          Contacts
+          <span>Contacts</span>
         </a>
-      </div>
-      <div class="legal-links-container">
+      </section>
+      <section class="legal-links-container">
         <a href="./privacy_policy.html" class="legal-link">Privacy Policy</a>
         <a href="./legal_notice.html" class="legal-link">Legal notice</a>
-      </div>
+      </section>
     </aside>
     <main class="main-content">
-      <div class="submenu d-none">
-        <div class="submenu-content closed">
+      <section class="submenu d-none">
+        <section class="submenu-content closed">
           <a class="submenu-help" href="help.html">Help</a>
           <a href="legal_notice.html">Legal Notice</a>
           <a href="privacy_policy.html">Privacy Policy</a>
           <a onclick="logOut()">Log out</a>
-        </div>
-      </div>
+        </section>
+      </section>
       <header>
-        <div class="header-content">
+        <section class="header-content">
           <p>Kanban Project Management Tool</p>
           <img class="responsiveLogo" src="assets/img/join_logo_dark.png" alt="Join-Logo">
-          <div class="header-icons">
+          <section class="header-icons">
             <a class="help-link" href="./help.html"><svg width="32" height="32" viewBox="0 0 32 32" fill="none"
                 xmlns="http://www.w3.org/2000/svg">
                 <mask id="mask0_233325_3412" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="32"
@@ -84,23 +84,23 @@
                     fill="#A8A8A8" />
                 </g>
               </svg></a>
-            <div class="user-icon" onclick="toggleSubmenu()">
+            <section class="user-icon" onclick="toggleSubmenu()">
               <b id="user-initials"></b>
 
-            </div>
-          </div>
-        </div>
+            </section>
+          </section>
+        </section>
       </header>
       <section class="board-header">
-        <div class="board-search">
-          <div class="board-h1-button">
+        <section class="board-search">
+          <section class="board-h1-button">
             <h1>Board</h1>
             <button onclick="window.location.href='./add_task.html'" class="add-task-button-responsive"
               id="add-task-button-responsive"><img src="./assets/icons/add.png" alt="add"></button>
-          </div>
-          <div class="board-input-responsive">
+          </section>
+          <section class="board-input-responsive">
             <form>
-              <div class="board-input-field">
+              <section class="board-input-field">
                 <input type="text" placeholder="Find Task" id="find-task-responsive" class="find-task"
                   onkeyup="searchTask('responsive', event)">
                 <div>
@@ -108,13 +108,13 @@
                   <button type="button" onclick="searchTask('responsive', event)"><img
                       src="./assets/icons/search_icon.png" alt=""></button>
                 </div>
-              </div>
+              </section>
             </form>
-          </div>
-        </div>
-        <div class="board-input-container">
+          </section>
+        </section>
+        <section class="board-input-container">
           <form>
-            <div class="board-input-field">
+            <section class="board-input-field">
               <input type="text" placeholder="Find Task" id="find-task" class="find-task"
                 onkeyup="searchTask('', event)">
               <div>
@@ -122,19 +122,19 @@
                 <button type="button" onclick="searchTask('', event)"><img src="./assets/icons/search_icon.png"
                     alt=""></button>
               </div>
-            </div>
+            </section>
           </form>
           <button onclick="openTaskOverlay()" class="add-task-button"><span>Add task</span><img
               src="./assets/icons/add.png" alt="add"></button>
-        </div>
+          </section>
       </section>
-      <div class="search-notification d-none" id="search-notification">
-        <div class="search-msg-pop-up">
+      <section class="search-notification d-none" id="search-notification">
+        <section class="search-msg-pop-up">
           <span id="search-pop-up-notification">No results found</span>
-        </div>
-      </div>
+        </section>
+      </section>
       <div class="board-lists" id="board-lists" onmousemove="move(event)" ontouchmove="move(event)">
-        <section class="list" ondrop="changeList('to-do')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        <div class="list" ondrop="changeList('to-do')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>To do</h3>
@@ -143,8 +143,8 @@
           <div class="to-do" id="to-do">
 
           </div>
-        </section>
-        <section class="list" ondrop="changeList('in-progress')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        </div>
+        <div class="list" ondrop="changeList('in-progress')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>In progress</h3>
@@ -153,8 +153,8 @@
           <div class="in-progress" id="in-progress">
 
           </div>
-        </section>
-        <section class="list" ondrop="changeList('await-feedback')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        </div>
+        <div class="list" ondrop="changeList('await-feedback')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>Await feedback</h3>
@@ -163,8 +163,8 @@
           <div class="await-feedback" id="await-feedback">
 
           </div>
-        </section>
-        <section class="list" ondrop="changeList('done')" ondragover="allowDrop(event)" onmouseup="drop(event)"
+        </div>
+        <div class="list" ondrop="changeList('done')" ondragover="allowDrop(event)" onmouseup="drop(event)"
           ontouchend="drop(event)">
           <div class="list-head">
             <h3>Done</h3>
@@ -172,7 +172,7 @@
           <div class="done" id="done">
 
           </div>
-        </section>
+        </div>
       </div>
 
     </main>
@@ -204,12 +204,12 @@
   </footer>
   <script src="./scripts/drag_drop.js"></script>
 
-  <div id="taskoverlay" class="overlay hidden">
+  <section id="taskoverlay" class="overlay hidden">
     <iframe src="./add_task.html" id="overlayContent"></iframe>
     <button class="overlay-close" id="closeOverlay" onclick="closeTaskOverlay()">
       <img class="closebttn" src="./assets/icons/clear-icon.png" alt="ClearIcon">
     </button>
-  </div>
+  </section>
   <script src="scripts/file_input_overlay.js"></script>
 </body>
 </html>
