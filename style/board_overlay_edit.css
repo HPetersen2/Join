@@ -17,6 +17,7 @@
 }
 
 .overlay-input-field {
+    font-family: 'Inter';
     border-radius: 10px;
     border: 1px solid #D1D1D1;
     font-size: 20px;
@@ -28,12 +29,14 @@
 }
 
 .overlay-input-field::placeholder {
+    font-family: 'Inter';
     color: #000000;
     font-size: 20px;
     font-weight: 400;
 }
 
 .overlay-textarea {
+    font-family: 'Inter';
     min-height: 120px;
     max-width: 445px;
     border-radius: 10px;
@@ -44,10 +47,10 @@
 }
 
 .overlay-textarea::placeholder {
+    font-family: 'Inter';
     color: #000000;
-    font-size: 21px;
+    font-size: 20px;
     font-weight: 400;
-    font-family: 'Open Sans';
 }
 
 .overlay-input-field-date input {
@@ -341,7 +344,7 @@
 
 @media (max-width: 768px) {
     .overlay-edit-container {
-        width: 300px;
+        width: 100%;
     }
     .overlay-priority-container {
         width: 300px;

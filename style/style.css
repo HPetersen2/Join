@@ -331,3 +331,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 .show-msg {
     display: block;
 }
+
+.no-scroll {
+    overflow: hidden;
+}

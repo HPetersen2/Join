@@ -249,9 +249,7 @@
     .task-details {
         max-height: 75vh;
     }
-    .footer-overlay {
-        padding-bottom: 20px;
-    }
+
     #more-user-overlay {
         padding-bottom: 0;
     }
@@ -260,6 +258,12 @@
 @media (max-width: 768px) {
     .task-details {
         width: 370px;
+    }
+    .content-overlay h3 {
+        font-size: 40px;
+    }
+    .footer-overlay {
+        padding-bottom: 20px;
     }
 }
 
@@ -282,5 +286,6 @@
 @media (max-width: 370px) {
     .task-details {
         width: 300px;
+        padding: 24px 20px 24px 20px;
     }
 }
