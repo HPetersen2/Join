@@ -445,6 +445,7 @@ function getEnteredDate(value) {
     let inputDateParts = value.split('/');
     return new Date(`${inputDateParts[2]}-${inputDateParts[1]}-${inputDateParts[0]}`);
 }
+
 function handleTaskCreation() {
     createTask(() => {
         if (document.body.id === "overlay-mode") {

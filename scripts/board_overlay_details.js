@@ -10,6 +10,7 @@ async function showOverlayDetailsTask(id) {
     let tasksArray = Object.values(responseTaskJson);
     tasksArray = tasksArray[id];
     renderOverlay(tasksArray);
+    document.getElementById('board-lists').classList.add('no-scroll');
     const galleryDetail = new Viewer(document.getElementById('attachments-overlay'), {
         filter(image) {
           return !image.classList.contains('no-viewer');

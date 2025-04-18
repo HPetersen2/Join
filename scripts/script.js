@@ -148,7 +148,33 @@ async function loadTaskWithID(id) {
 function closeOverlay() {
     document.getElementById('task-details').style = 'display: none;';
     document.getElementById('all-content').style = 'filter: brightness(1);';
+    document.getElementById('board-lists').classList.remove('no-scroll');
     loadTasks();
     load = false;
 }
 
+/**
+ * Adds a global click event listener to the document.
+ * When a click occurs outside the 'task-details', 'edit-container', and 'delete-container' elements,
+ * the `closeOverlay()` function is called.
+ * 
+ * This is useful for closing modal overlays or dropdowns when clicking elsewhere on the page.
+ * Assumes that the 'task-details', 'edit-container', and 'delete-container' elements
+ * exist or may be dynamically rendered in the DOM.
+ */
+document.addEventListener('click', function(event) {
+    const taskDetails = document.getElementById('task-details');
+    const edit = document.getElementById('edit-container');
+    const del = document.getElementById('delete-container');
+  
+    if (taskDetails) {
+      if (
+        !taskDetails.contains(event.target) &&
+        (!edit || !edit.contains(event.target)) &&
+        (!del || !del.contains(event.target))
+      ) {
+        closeOverlay();
+      }
+    }
+});
+  
