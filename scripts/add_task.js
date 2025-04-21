@@ -153,30 +153,34 @@ async function saveTask(newTask) {
 
     try {
         await fetch(`${BASE_URL}/tasks/${newTask.id - 1}.json`, {
-            method: 'PATCH',
+            method: 'PUT', // << hier geändert
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(newTask),
         });
 
-        const successOverlay = document.getElementById('success-overlay');
-        if (successOverlay) {
-            successOverlay.style.display = 'flex';
-            successOverlay.style.justifyContent = 'center';
-            successOverlay.style.alignItems = 'center';
-
-            setTimeout(() => {
-                successOverlay.style.display = 'none';
-                if (document.body.id === "overlay-mode") {
-                    clearInputsAndCloseOverlay();
-                } else {
-                    window.location.href = 'board.html';
-                }
-            }, 3000);
-        } else {
-            console.error('Element mit der ID "success-overlay" wurde nicht gefunden.');
-        }
+        showSuccessOverlay();
     } catch (error) {
         console.error("Fehler beim Speichern des Tasks:", error);
+    }
+}
+
+function showSuccessOverlay() {
+    const successOverlay = document.getElementById('success-overlay');
+    if (successOverlay) {
+        successOverlay.style.display = 'flex';
+        successOverlay.style.justifyContent = 'center';
+        successOverlay.style.alignItems = 'center';
+
+        setTimeout(() => {
+            successOverlay.style.display = 'none';
+            if (document.body.id === "overlay-mode") {
+                clearInputsAndCloseOverlay();
+            } else {
+                window.location.href = 'board.html';
+            }
+        }, 3000);
+    } else {
+        console.error('Element mit der ID "success-overlay" wurde nicht gefunden.');
     }
 }
 
